@@ -1,6 +1,6 @@
 import { Booking, DashboardSummary, DeliveryZone, GalleryItem, LiveStream, PrasadProduct, PujaEvent, SiteContent, VideoItem } from '../core/models/models';
 
-export const SITE_CONTENT: SiteContent = { heroTitle: 'इस दुर्गा पूजा माँ के साथ जुड़िए', heroText: 'राँची रेलवे दुर्गा पूजा समिति के पावन उत्सव से जुड़िए। पूजा, आरती, दर्शन और माँ का प्रसाद अपने परिवार के साथ प्राप्त करें।', committeeMessage: 'श्रद्धा, सेवा और एकता के साथ हम सभी भक्तों का स्वागत करते हैं।', contactPhone: '+91 00000 00000', contactEmail: 'contact@ranchirailwaydurgapuja.org', location: 'Ranchi Railway परिसर, Ranchi, Jharkhand' };
+export const SITE_CONTENT: SiteContent = { heroTitle: 'इस दुर्गा पूजा माँ के साथ जुड़िए', heroText: 'राँची रेलवे स्टेशन दुर्गा पूजा समिति के पावन उत्सव से जुड़िए। पूजा, आरती, दर्शन और माँ का प्रसाद अपने परिवार के साथ प्राप्त करें।', committeeMessage: 'श्रद्धा, सेवा और एकता के साथ हम सभी भक्तों का स्वागत करते हैं।', contactPhone: '+91 00000 00000', contactEmail: 'contact@ranchirailwaydurgapuja.org', location: 'Ranchi Railway परिसर, Ranchi, Jharkhand' };
 export const PUJA_EVENTS: PujaEvent[] = [
   { id: 1, date: '2026-10-17', dayName: 'षष्ठी', eventName: 'बेल वरण', startTime: '06:00 PM', venue: 'मुख्य पंडाल', isActive: true },
   { id: 2, date: '2026-10-17', dayName: 'षष्ठी', eventName: 'संध्या आरती', startTime: '07:00 PM', venue: 'मुख्य पंडाल', isActive: true },
@@ -117,7 +117,7 @@ export const PRASAD_PRODUCTS: PrasadProduct[] = [
   }
 ];
 export const DELIVERY_ZONES: DeliveryZone[] = Array.from({ length: 55 }, (_, i) => ({ id: i + 1, ward: `Ward ${i + 1}`, charge: i < 25 ? 40 : 60, isSupported: i < 35 }));
-export const LIVE_STREAM: LiveStream = { title: 'राँची रेलवे दुर्गा पूजा — लाइव दर्शन', youtubeVideoId: 'dQw4w9WgXcQ', isActive: true, startDate: '2026-10-17', endDate: '2026-10-21' };
+export const LIVE_STREAM: LiveStream = { title: 'राँची रेलवे स्टेशन दुर्गा पूजा — लाइव दर्शन', youtubeVideoId: 'dQw4w9WgXcQ', isActive: true, startDate: '2026-10-17', endDate: '2026-10-21' };
 export const GALLERY_ITEMS: GalleryItem[] = [
   { id: 1, title: 'अलौकिक पंडाल', category: 'Pandal', year: 2025, imageUrl: 'https://images.unsplash.com/photo-1606293926075-69a00dbfde81?auto=format&fit=crop&w=900&q=85' },
   { id: 2, title: 'संध्या आरती', category: 'Aarti', year: 2025, imageUrl: 'https://images.unsplash.com/photo-1544427920-c49ccfb85579?auto=format&fit=crop&w=900&q=85' },
