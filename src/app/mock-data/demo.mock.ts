@@ -117,7 +117,44 @@ export const PRASAD_PRODUCTS: PrasadProduct[] = [
   }
 ];
 export const DELIVERY_ZONES: DeliveryZone[] = Array.from({ length: 55 }, (_, i) => ({ id: i + 1, ward: `Ward ${i + 1}`, charge: i < 25 ? 40 : 60, isSupported: i < 35 }));
-export const LIVE_STREAM: LiveStream = { title: 'राँची रेलवे स्टेशन दुर्गा पूजा — लाइव दर्शन', youtubeVideoId: 'dQw4w9WgXcQ', isActive: true, startDate: '2026-10-17', endDate: '2026-10-21' };
+export const LIVE_STREAM: LiveStream = {
+
+  id: 1,
+
+  title:
+    'राँची रेलवे स्टेशन दुर्गा पूजा — लाइव दर्शन',
+
+  description:
+    'राँची रेलवे स्टेशन दुर्गा पूजा समिति के पावन पूजा एवं आरती कार्यक्रमों का सीधा प्रसारण।',
+
+  youtubeVideoId:
+    'dQw4w9WgXcQ',
+
+  thumbnailUrl:
+    'https://images.unsplash.com/photo-1577083552431-6e5fd01aa342?auto=format&fit=crop&w=1200&q=80',
+
+  eventDate:
+    '2026-10-17',
+
+  startTime:
+    '07:00 PM',
+
+  endTime:
+    '08:00 PM',
+
+  dayName:
+    'सप्तमी',
+
+  venue:
+    'Ranchi Railway Station Durga Puja Pandal',
+
+  status:
+    'UPCOMING',
+
+  isActive:
+    true
+
+};
 export const GALLERY_ITEMS: GalleryItem[] = [
   { id: 1, title: 'अलौकिक पंडाल', category: 'Pandal', year: 2025, imageUrl: 'https://images.unsplash.com/photo-1606293926075-69a00dbfde81?auto=format&fit=crop&w=900&q=85' },
   { id: 2, title: 'संध्या आरती', category: 'Aarti', year: 2025, imageUrl: 'https://images.unsplash.com/photo-1544427920-c49ccfb85579?auto=format&fit=crop&w=900&q=85' },

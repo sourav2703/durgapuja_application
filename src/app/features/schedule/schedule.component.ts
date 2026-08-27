@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { DemoDataService } from '../../core/services/demo-data.service';
 import { PujaEvent } from '../../core/models/models';
 
@@ -10,11 +11,12 @@ import { PujaEvent } from '../../core/models/models';
 export class ScheduleComponent implements OnInit {
 
   loading = true;
+
   error = false;
 
-  events: PujaEvent[] = [];
-
-  grouped: { [key: string]: PujaEvent[] } = {};
+  grouped: {
+    [key: string]: PujaEvent[];
+  } = {};
 
   days: string[] = [];
 
@@ -23,50 +25,56 @@ export class ScheduleComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+
     this.loadSchedule();
+
   }
 
   private loadSchedule(): void {
 
     this.loading = true;
+
     this.error = false;
 
     this.data.getPujaSchedule().subscribe({
+
       next: (events: PujaEvent[]) => {
 
-        this.events = events;
+        this.grouped = {};
 
-        this.groupEventsByDay();
+        events.forEach((event: PujaEvent) => {
+
+          if (!this.grouped[event.dayName]) {
+
+            this.grouped[event.dayName] = [];
+
+          }
+
+          this.grouped[event.dayName].push(event);
+
+        });
+
+        this.days = Object.keys(this.grouped);
 
         this.loading = false;
+
       },
 
       error: (error) => {
 
         console.error(
-          'Unable to load puja schedule',
+          'Unable to load Puja Schedule',
           error
         );
 
         this.error = true;
+
         this.loading = false;
-      }
-    });
-  }
 
-  private groupEventsByDay(): void {
-
-    this.grouped = {};
-
-    this.events.forEach((event: PujaEvent) => {
-
-      if (!this.grouped[event.dayName]) {
-        this.grouped[event.dayName] = [];
       }
 
-      this.grouped[event.dayName].push(event);
     });
 
-    this.days = Object.keys(this.grouped);
   }
+
 }
