@@ -12,8 +12,109 @@ export const PUJA_EVENTS: PujaEvent[] = [
   { id: 8, date: '2026-10-21', dayName: 'दशमी', eventName: 'सिंदूर खेला व विसर्जन यात्रा', startTime: '03:00 PM', venue: 'रेलवे परिसर', isActive: true }
 ];
 export const PRASAD_PRODUCTS: PrasadProduct[] = [
-  { id: 1, name: 'महाभोग', description: 'सप्तमी विशेष सात्विक महाभोग, श्रद्धापूर्वक तैयार।', price: 100, imageUrl: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=85', availableDate: '20 Oct 2026', availability: 63, capacity: 500, collectionMethods: ['ON_PREMISES', 'HOME_DELIVERY'], isActive: true },
-  { id: 2, name: 'माँ का प्रसाद थाल', description: 'पूजा परिसर में ग्रहण करने हेतु प्रसाद का विशेष थाल।', price: 100, imageUrl: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=900&q=85', availableDate: '19 Oct 2026', availability: 120, capacity: 300, collectionMethods: ['ON_PREMISES'], isActive: true }
+  {
+    id: 1,
+    name: 'महाभोग',
+    description: 'सप्तमी विशेष सात्विक महाभोग, श्रद्धापूर्वक तैयार।',
+    price: 100,
+    imageUrl: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Prosad_thali.jpg',
+    availableDate: '2026-10-20',
+    availability: 63,
+    capacity: 500,
+    collectionMethods: ['ON_PREMISES', 'HOME_DELIVERY'],
+    isActive: true
+  },
+
+  {
+    id: 2,
+    name: 'माँ का प्रसाद थाल',
+    description: 'माँ को अर्पित सात्विक भोजन से तैयार विशेष प्रसाद थाल।',
+    price: 100,
+    imageUrl: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/INDIAN_thali.jpg',
+    availableDate: '2026-10-19',
+    availability: 120,
+    capacity: 300,
+    collectionMethods: ['ON_PREMISES'],
+    isActive: true
+  },
+
+  {
+    id: 3,
+    name: 'अष्टमी भोग',
+    description: 'अष्टमी के पावन अवसर पर विशेष सात्विक भोग।',
+    price: 100,
+    imageUrl: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Indian_food_thali.jpg',
+    availableDate: '2026-10-21',
+    availability: 85,
+    capacity: 500,
+    collectionMethods: ['ON_PREMISES', 'HOME_DELIVERY'],
+    isActive: true
+  },
+
+  {
+    id: 4,
+    name: 'खिचड़ी महाभोग',
+    description: 'सप्तमी एवं अष्टमी के अवसर पर पारंपरिक सात्विक खिचड़ी एवं भोग।',
+    price: 120,
+    imageUrl: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Khichdi.jpg',
+    availableDate: '2026-10-21',
+    availability: 145,
+    capacity: 600,
+    collectionMethods: ['ON_PREMISES', 'HOME_DELIVERY'],
+    isActive: true
+  },
+
+  {
+    id: 5,
+    name: 'नवमी विशेष भोग',
+    description: 'नवमी के पावन दिन माँ को अर्पित विशेष सात्विक भोग एवं प्रसाद।',
+    price: 150,
+    imageUrl: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/A_complete_meal.jpg',
+    availableDate: '2026-10-22',
+    availability: 72,
+    capacity: 400,
+    collectionMethods: ['ON_PREMISES', 'HOME_DELIVERY'],
+    isActive: true
+  },
+
+  {
+    id: 6,
+    name: 'विशेष प्रसाद पैकेट',
+    description: 'माँ का आशीर्वाद एवं पारंपरिक भारतीय मिठाई से तैयार विशेष प्रसाद पैकेट।',
+    price: 50,
+    imageUrl: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Desi_besan_ke_ladoo.jpg',
+    availableDate: '2026-10-19',
+    availability: 180,
+    capacity: 500,
+    collectionMethods: ['ON_PREMISES'],
+    isActive: true
+  },
+
+  {
+    id: 7,
+    name: 'परिवार प्रसाद पैक',
+    description: 'परिवार के लिए विशेष प्रसाद पैक, पूजा परिसर से प्राप्त करने हेतु।',
+    price: 250,
+    imageUrl: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Indian_Traditional_Thali.JPG',
+    availableDate: '2026-10-22',
+    availability: 45,
+    capacity: 200,
+    collectionMethods: ['ON_PREMISES', 'HOME_DELIVERY'],
+    isActive: true
+  },
+
+  {
+    id: 8,
+    name: 'पूरी-हलवा प्रसाद',
+    description: 'पारंपरिक पूरी एवं हलवा से तैयार विशेष सात्विक प्रसाद।',
+    price: 80,
+    imageUrl: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Poori_halwa.jpg',
+    availableDate: '2026-10-20',
+    availability: 95,
+    capacity: 300,
+    collectionMethods: ['ON_PREMISES', 'HOME_DELIVERY'],
+    isActive: true
+  }
 ];
 export const DELIVERY_ZONES: DeliveryZone[] = Array.from({ length: 55 }, (_, i) => ({ id: i + 1, ward: `Ward ${i + 1}`, charge: i < 25 ? 40 : 60, isSupported: i < 35 }));
 export const LIVE_STREAM: LiveStream = { title: 'राँची रेलवे दुर्गा पूजा — लाइव दर्शन', youtubeVideoId: 'dQw4w9WgXcQ', isActive: true, startDate: '2026-10-17', endDate: '2026-10-21' };

@@ -1,0 +1,779 @@
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section class="hero-section">
+
+  <div class="hero-background"></div>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-pattern"></div>
+
+  <div class="container hero-container">
+
+    <div class="row align-items-center">
+
+      <div class="col-lg-8">
+
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          शारदीय दुर्गा पूजा · 2026
+        </div>
+
+        <div class="hero-small-title">
+          राँची रेलवे दुर्गा पूजा समिति
+        </div>
+
+        <h1>
+          {{ content?.heroTitle || 'माँ के चरणों में, पूरे परिवार के साथ' }}
+        </h1>
+
+        <p class="hero-description">
+          {{ content?.heroText ||
+          'पूजा, आरती, दर्शन और माँ के प्रसाद के इस पावन उत्सव में हमारे साथ जुड़िए।' }}
+        </p>
+
+        <div class="hero-actions">
+
+          <a
+            routerLink="/puja-schedule"
+            class="btn btn-gold hero-btn">
+
+            <i class="pi pi-calendar"></i>
+
+            पूजा कार्यक्रम
+
+          </a>
+
+          <a
+            routerLink="/live-darshan"
+            class="btn btn-live hero-btn">
+
+            <span class="live-icon">
+              ●
+            </span>
+
+            Live Darshan
+
+          </a>
+
+        </div>
+
+        <div class="hero-info">
+
+          <div class="hero-info-item">
+
+            <i class="pi pi-calendar"></i>
+
+            <div>
+              <strong>2026</strong>
+              <span>पावन उत्सव</span>
+            </div>
+
+          </div>
+
+          <div class="hero-divider"></div>
+
+          <div class="hero-info-item">
+
+            <i class="pi pi-heart"></i>
+
+            <div>
+              <strong>9 दिन</strong>
+              <span>माँ की आराधना</span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="hero-bottom">
+
+    <div class="container">
+
+      <div class="scroll-indicator">
+
+        <span>नीचे देखें</span>
+
+        <i class="pi pi-angle-down"></i>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     INTRO
+========================================================= -->
+
+<section class="intro-section">
+
+  <div class="container">
+
+    <div class="intro-card">
+
+      <div class="intro-decoration decoration-left">
+        ✦
+      </div>
+
+      <div class="intro-decoration decoration-right">
+        ✦
+      </div>
+
+      <div class="row align-items-center">
+
+        <div class="col-lg-7">
+
+          <span class="section-label">
+            माँ का आशीर्वाद
+          </span>
+
+          <h2>
+            इस दुर्गा पूजा
+            <span>माँ के साथ जुड़िए</span>
+          </h2>
+
+          <p>
+            राँची रेलवे दुर्गा पूजा समिति आपको माँ दुर्गा की
+            आराधना, पूजा, आरती, दर्शन और सेवा के इस पावन
+            उत्सव का सहभागी बनने का निमंत्रण देती है।
+          </p>
+
+          <a
+            routerLink="/about"
+            class="simple-link">
+
+            समिति के बारे में
+
+            <i class="pi pi-arrow-right"></i>
+
+          </a>
+
+        </div>
+
+        <div class="col-lg-5">
+
+          <div class="stats-wrapper">
+
+            <div class="stat-item">
+
+              <div class="stat-icon">
+                <i class="pi pi-calendar"></i>
+              </div>
+
+              <div>
+                <strong>9</strong>
+                <span>पावन दिन</span>
+              </div>
+
+            </div>
+
+            <div class="stat-item">
+
+              <div class="stat-icon">
+                <i class="pi pi-heart"></i>
+              </div>
+
+              <div>
+                <strong>20+</strong>
+                <span>वर्षों की परंपरा</span>
+              </div>
+
+            </div>
+
+            <div class="stat-item">
+
+              <div class="stat-icon">
+                <i class="pi pi-star"></i>
+              </div>
+
+              <div>
+                <strong>2026</strong>
+                <span>उत्सव वर्ष</span>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     PUJA SCHEDULE
+========================================================= -->
+
+<section class="schedule-section">
+
+  <div class="container">
+
+    <div class="section-heading">
+
+      <div>
+
+        <span class="section-label">
+          Puja Calendar
+        </span>
+
+        <h2>
+          पूजा के पावन <span>क्षण</span>
+        </h2>
+
+      </div>
+
+      <a
+        routerLink="/puja-schedule"
+        class="outline-link">
+
+        पूरा कार्यक्रम
+
+        <i class="pi pi-arrow-right"></i>
+
+      </a>
+
+    </div>
+
+
+    <div
+      class="schedule-timeline"
+      *ngIf="events.length; else scheduleEmpty">
+
+      <div
+        class="schedule-item"
+        *ngFor="let event of events.slice(0, 5); let i = index">
+
+        <div class="timeline-number">
+          {{ i + 1 }}
+        </div>
+
+        <div class="schedule-content">
+
+          <div class="schedule-top">
+
+            <span class="schedule-day">
+              {{ event.dayName }}
+            </span>
+
+            <span class="schedule-time">
+              <i class="pi pi-clock"></i>
+              {{ event.startTime }}
+            </span>
+
+          </div>
+
+          <h3>
+            {{ event.eventName }}
+          </h3>
+
+          <span class="schedule-venue">
+            <i class="pi pi-map-marker"></i>
+            {{ event.venue }}
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <ng-template #scheduleEmpty>
+
+      <div class="empty-state">
+
+        <i class="pi pi-calendar"></i>
+
+        <p>
+          पूजा कार्यक्रम जल्द उपलब्ध होगा।
+        </p>
+
+      </div>
+
+    </ng-template>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     LIVE DARSHAN
+========================================================= -->
+
+<section class="darshan-section">
+
+  <div class="darshan-glow glow-one"></div>
+  <div class="darshan-glow glow-two"></div>
+
+  <div class="container">
+
+    <div class="row align-items-center">
+
+      <div class="col-lg-7">
+
+        <div class="live-status">
+
+          <span class="live-dot"></span>
+
+          LIVE DARSHAN
+
+        </div>
+
+        <h2>
+          माँ का दर्शन,
+          <span>जहाँ भी आप हों</span>
+        </h2>
+
+        <p>
+          उत्सव के महत्वपूर्ण क्षणों में घर बैठे
+          माँ के दर्शन से जुड़िए और इस पावन उत्सव
+          का हिस्सा बनिए।
+        </p>
+
+        <a
+          routerLink="/live-darshan"
+          class="btn btn-gold darshan-btn">
+
+          <i class="pi pi-video"></i>
+
+          Live Darshan देखें
+
+          <i class="pi pi-arrow-right"></i>
+
+        </a>
+
+      </div>
+
+
+      <div class="col-lg-5">
+
+        <div class="darshan-card">
+
+          <div class="darshan-card-inner">
+
+            <i class="pi pi-video"></i>
+
+            <span>
+              LIVE
+            </span>
+
+            <strong>
+              माँ दुर्गा के दर्शन
+            </strong>
+
+            <small>
+              उत्सव के दौरान यहाँ लाइव स्ट्रीम उपलब्ध होगी
+            </small>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     PRASAD
+========================================================= -->
+
+<section class="prasad-section">
+
+  <div class="container">
+
+    <div class="section-heading">
+
+      <div>
+
+        <span class="section-label">
+          Prasad & Bhog
+        </span>
+
+        <h2>
+          माँ का प्रसाद,
+          <span>सेवा का भाव</span>
+        </h2>
+
+      </div>
+
+      <a
+        routerLink="/prasad"
+        class="outline-link">
+
+        सभी प्रसाद देखें
+
+        <i class="pi pi-arrow-right"></i>
+
+      </a>
+
+    </div>
+
+
+    <div class="row g-4">
+
+      <div
+        class="col-md-6"
+        *ngFor="let product of products">
+
+        <article class="prasad-card">
+
+          <div class="prasad-image">
+
+            <img
+              [src]="product.imageUrl"
+              [alt]="product.name"
+              loading="lazy">
+
+            <div class="image-overlay"></div>
+
+            <span class="price-badge">
+              ₹{{ product.price }}
+            </span>
+
+          </div>
+
+
+          <div class="prasad-body">
+
+            <span class="prasad-date">
+              {{ product.availableDate }}
+            </span>
+
+            <h3>
+              {{ product.name }}
+            </h3>
+
+            <p>
+              {{ product.description }}
+            </p>
+
+            <div class="prasad-footer">
+
+              <div class="availability">
+
+                <i class="pi pi-check-circle"></i>
+
+                उपलब्ध
+
+              </div>
+
+              <a
+                [routerLink]="['/booking']"
+                [queryParams]="{ product: product.id }"
+                class="book-link">
+
+                Book Now
+
+                <i class="pi pi-arrow-right"></i>
+
+              </a>
+
+            </div>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     QUICK EXPERIENCE
+========================================================= -->
+
+<section class="experience-section">
+
+  <div class="container">
+
+    <div class="experience-header text-center">
+
+      <span class="section-label">
+        Join The Celebration
+      </span>
+
+      <h2>
+        पूजा से <span>जुड़ने के कई तरीके</span>
+      </h2>
+
+      <p>
+        जहाँ हों, वहीं से माँ के इस पावन उत्सव का हिस्सा बनिए।
+      </p>
+
+    </div>
+
+
+    <div class="row g-4">
+
+      <div class="col-md-4">
+
+        <a
+          routerLink="/puja-schedule"
+          class="experience-card">
+
+          <div class="experience-icon">
+            <i class="pi pi-calendar"></i>
+          </div>
+
+          <div>
+
+            <span>
+              01
+            </span>
+
+            <h3>
+              पूजा कार्यक्रम
+            </h3>
+
+            <p>
+              सभी पूजा, आरती और विशेष कार्यक्रमों
+              का पूरा समय देखें।
+            </p>
+
+          </div>
+
+          <i class="pi pi-arrow-up-right experience-arrow"></i>
+
+        </a>
+
+      </div>
+
+
+      <div class="col-md-4">
+
+        <a
+          routerLink="/live-darshan"
+          class="experience-card">
+
+          <div class="experience-icon">
+            <i class="pi pi-video"></i>
+          </div>
+
+          <div>
+
+            <span>
+              02
+            </span>
+
+            <h3>
+              Live Darshan
+            </h3>
+
+            <p>
+              उत्सव के महत्वपूर्ण क्षणों में
+              माँ के लाइव दर्शन करें।
+            </p>
+
+          </div>
+
+          <i class="pi pi-arrow-up-right experience-arrow"></i>
+
+        </a>
+
+      </div>
+
+
+      <div class="col-md-4">
+
+        <a
+          routerLink="/prasad"
+          class="experience-card">
+
+          <div class="experience-icon">
+            <i class="pi pi-heart"></i>
+          </div>
+
+          <div>
+
+            <span>
+              03
+            </span>
+
+            <h3>
+              माँ का प्रसाद
+            </h3>
+
+            <p>
+              परिसर में प्रसाद प्राप्त करें या
+              घर तक मंगवाएँ।
+            </p>
+
+          </div>
+
+          <i class="pi pi-arrow-up-right experience-arrow"></i>
+
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     GALLERY
+========================================================= -->
+
+<section class="gallery-section">
+
+  <div class="container">
+
+    <div class="section-heading">
+
+      <div>
+
+        <span class="section-label">
+          Memories
+        </span>
+
+        <h2>
+          उत्सव की <span>झलकियाँ</span>
+        </h2>
+
+      </div>
+
+      <a
+        routerLink="/gallery"
+        class="outline-link">
+
+        पूरी गैलरी
+
+        <i class="pi pi-arrow-right"></i>
+
+      </a>
+
+    </div>
+
+
+    <div
+      class="gallery-grid"
+      *ngIf="gallery.length">
+
+      <div
+        class="gallery-box gallery-large"
+        *ngIf="gallery[0]">
+
+        <img
+          [src]="gallery[0].imageUrl"
+          [alt]="gallery[0].title"
+          loading="lazy">
+
+        <div class="gallery-caption">
+          {{ gallery[0].title }}
+        </div>
+
+      </div>
+
+
+      <div
+        class="gallery-box"
+        *ngIf="gallery[1]">
+
+        <img
+          [src]="gallery[1].imageUrl"
+          [alt]="gallery[1].title"
+          loading="lazy">
+
+      </div>
+
+
+      <div
+        class="gallery-box"
+        *ngIf="gallery[2]">
+
+        <img
+          [src]="gallery[2].imageUrl"
+          [alt]="gallery[2].title"
+          loading="lazy">
+
+      </div>
+
+
+      <div
+        class="gallery-box gallery-wide"
+        *ngIf="gallery[3]">
+
+        <img
+          [src]="gallery[3].imageUrl"
+          [alt]="gallery[3].title"
+          loading="lazy">
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     COMMITTEE MESSAGE
+========================================================= -->
+
+<section
+  class="message-section"
+  *ngIf="content">
+
+  <div class="container">
+
+    <div class="message-card">
+
+      <div class="quote-mark">
+        “
+      </div>
+
+      <span class="section-label">
+        समिति का संदेश
+      </span>
+
+      <blockquote>
+        {{ content.committeeMessage }}
+      </blockquote>
+
+      <div class="message-author">
+
+        <div class="author-line"></div>
+
+        <span>
+          Ranchi Railway Durga Puja Committee
+        </span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>

@@ -1,5 +1,72 @@
 import { Component, OnInit } from '@angular/core';
 import { DemoDataService } from '../../core/services/demo-data.service';
 import { PujaEvent } from '../../core/models/models';
-@Component({ selector: 'app-schedule', template: `<app-page-header eyebrow="Puja calendar" title="पूजा कार्यक्रम 2026" subtitle="हर आरती, अनुष्ठान और सेवा के समय की जानकारी एक जगह।"></app-page-header><section class="section-pad"><div class="container"><div *ngIf="loading" class="loading-box">Loading programme…</div><div *ngIf="error" class="error-box">Unable to load data. Please try again.</div><div class="timeline" *ngIf="!loading && !error"><div class="timeline-day" *ngFor="let day of days"><div class="timeline-date">{{day}}</div><article class="timeline-event" *ngFor="let event of grouped[day]"><time>{{event.startTime}}</time><div><h4>{{event.eventName}}</h4><p>{{event.description || 'पूजा समिति द्वारा आयोजित पावन कार्यक्रम।'}}</p><small><i class="pi pi-map-marker"></i> {{event.venue}}</small></div></article></div><div *ngIf="!days.length" class="loading-box">No records available.</div></div></div></section>` })
-export class ScheduleComponent implements OnInit { loading=true; error=false; grouped: {[key:string]: PujaEvent[]}={}; days: string[]=[]; constructor(private data:DemoDataService){} ngOnInit():void { this.data.getPujaSchedule().subscribe({next: events=>{this.grouped=events.reduce((a,e)=>({...a,[e.dayName]:[...(a[e.dayName]||[]),e]}),{} as {[key:string]:PujaEvent[]}); this.days=Object.keys(this.grouped);this.loading=false;},error:()=>{this.error=true;this.loading=false;}}); } }
+
+@Component({
+  selector: 'app-schedule',
+  templateUrl: './schedule.component.html',
+  styleUrls: ['./schedule.component.css']
+})
+export class ScheduleComponent implements OnInit {
+
+  loading = true;
+  error = false;
+
+  events: PujaEvent[] = [];
+
+  grouped: { [key: string]: PujaEvent[] } = {};
+
+  days: string[] = [];
+
+  constructor(
+    private data: DemoDataService
+  ) {}
+
+  ngOnInit(): void {
+    this.loadSchedule();
+  }
+
+  private loadSchedule(): void {
+
+    this.loading = true;
+    this.error = false;
+
+    this.data.getPujaSchedule().subscribe({
+      next: (events: PujaEvent[]) => {
+
+        this.events = events;
+
+        this.groupEventsByDay();
+
+        this.loading = false;
+      },
+
+      error: (error) => {
+
+        console.error(
+          'Unable to load puja schedule',
+          error
+        );
+
+        this.error = true;
+        this.loading = false;
+      }
+    });
+  }
+
+  private groupEventsByDay(): void {
+
+    this.grouped = {};
+
+    this.events.forEach((event: PujaEvent) => {
+
+      if (!this.grouped[event.dayName]) {
+        this.grouped[event.dayName] = [];
+      }
+
+      this.grouped[event.dayName].push(event);
+    });
+
+    this.days = Object.keys(this.grouped);
+  }
+}

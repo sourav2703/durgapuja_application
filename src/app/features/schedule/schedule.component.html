@@ -1,0 +1,209 @@
+<!-- =====================================================
+     PAGE HEADER
+===================================================== -->
+
+<app-page-header
+  eyebrow="Puja Calendar"
+  title="पूजा कार्यक्रम 2026"
+  subtitle="हर आरती, अनुष्ठान और सेवा के समय की जानकारी एक जगह।">
+</app-page-header>
+
+
+<!-- =====================================================
+     SCHEDULE SECTION
+===================================================== -->
+
+<section class="schedule-page">
+
+  <div class="container">
+
+
+    <!-- =========================
+         LOADING
+    ========================== -->
+
+    <div
+      *ngIf="loading"
+      class="loading-box">
+
+      <i class="pi pi-spin pi-spinner"></i>
+
+      <span>
+        पूजा कार्यक्रम लोड हो रहा है...
+      </span>
+
+    </div>
+
+
+    <!-- =========================
+         ERROR
+    ========================== -->
+
+    <div
+      *ngIf="!loading && error"
+      class="error-box">
+
+      <div class="error-icon">
+
+        <i class="pi pi-exclamation-triangle"></i>
+
+      </div>
+
+      <div>
+
+        <h4>
+          कार्यक्रम लोड नहीं हो पाया
+        </h4>
+
+        <p>
+          कृपया थोड़ी देर बाद दोबारा प्रयास करें।
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <!-- =========================
+         EMPTY
+    ========================== -->
+
+    <div
+      *ngIf="!loading && !error && !days.length"
+      class="empty-box">
+
+      <i class="pi pi-calendar"></i>
+
+      <h4>
+        कोई कार्यक्रम उपलब्ध नहीं है
+      </h4>
+
+      <p>
+        पूजा कार्यक्रम जल्द ही अपडेट किया जाएगा।
+      </p>
+
+    </div>
+
+
+    <!-- =========================
+         TIMELINE
+    ========================== -->
+
+    <div
+      *ngIf="!loading && !error && days.length"
+      class="timeline">
+
+
+      <!-- DAY -->
+
+      <div
+        class="timeline-day"
+        *ngFor="let day of days; let dayIndex = index">
+
+
+        <!-- DAY HEADER -->
+
+        <div class="timeline-day-header">
+
+          <div class="day-number">
+
+            {{ dayIndex + 1 }}
+
+          </div>
+
+          <div>
+
+            <span class="day-label">
+              Puja Day
+            </span>
+
+            <h2>
+              {{ day }}
+            </h2>
+
+          </div>
+
+        </div>
+
+
+        <!-- EVENTS -->
+
+        <div class="timeline-events">
+
+          <article
+            class="timeline-event"
+            *ngFor="let event of grouped[day]">
+
+
+            <!-- TIME -->
+
+            <div class="event-time">
+
+              <span>
+                {{ event.startTime }}
+              </span>
+
+              <div class="time-line"></div>
+
+            </div>
+
+
+            <!-- EVENT CARD -->
+
+            <div class="event-card">
+
+              <div class="event-card-top">
+
+                <span class="event-type">
+                  पूजा कार्यक्रम
+                </span>
+
+                <span
+                  class="event-status"
+                  *ngIf="event.isActive">
+
+                  <i class="pi pi-check-circle"></i>
+
+                  निर्धारित
+
+                </span>
+
+              </div>
+
+
+              <h3>
+                {{ event.eventName }}
+              </h3>
+
+
+              <p>
+                {{
+                  event.description ||
+                  'पूजा समिति द्वारा आयोजित पावन कार्यक्रम।'
+                }}
+              </p>
+
+
+              <div class="event-location">
+
+                <i class="pi pi-map-marker"></i>
+
+                <span>
+                  {{ event.venue }}
+                </span>
+
+              </div>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>

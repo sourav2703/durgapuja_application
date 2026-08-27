@@ -1,0 +1,479 @@
+:host {
+  display: block;
+
+  --maroon: #711d18;
+  --gold: #d69a2b;
+  --gold-light: #f0c96d;
+  --cream: #fbf6ed;
+  --text: #302521;
+  --muted: #786c64;
+  --border: #e7ddd1;
+}
+
+
+/* =====================================================
+   PAGE
+===================================================== */
+
+.gallery-page {
+  padding: 85px 0 110px;
+
+  background: #fff;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.gallery-header {
+  margin-bottom: 40px;
+}
+
+.gallery-header h2 {
+  margin: 0 0 28px;
+
+  color: var(--text);
+
+  font-size: clamp(30px, 4vw, 45px);
+}
+
+.gallery-header h2 span {
+  color: var(--maroon);
+}
+
+.section-kicker {
+  display: block;
+
+  margin-bottom: 9px;
+
+  color: var(--maroon);
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  letter-spacing: 2px;
+
+  text-transform: uppercase;
+}
+
+
+/* =====================================================
+   FILTER
+===================================================== */
+
+.filter-row {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+}
+
+.filter-row button {
+  padding: 9px 17px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 50px;
+
+  background: #fff;
+
+  color: #776b63;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.filter-row button:hover {
+  border-color: #d5b77e;
+
+  color: var(--maroon);
+}
+
+.filter-row button.active {
+  border-color: var(--maroon);
+
+  background: var(--maroon);
+
+  color: #fff;
+}
+
+
+/* =====================================================
+   MASONRY
+===================================================== */
+
+.masonry {
+  columns: 3 300px;
+
+  column-gap: 18px;
+}
+
+.gallery-item {
+  position: relative;
+
+  display: block;
+
+  overflow: hidden;
+
+  margin: 0 0 18px;
+
+  break-inside: avoid;
+
+  border-radius: 14px;
+
+  background: #eee;
+
+  cursor: pointer;
+}
+
+.gallery-item img {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  transition:
+    transform 0.5s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+
+/* =====================================================
+   IMAGE OVERLAY
+===================================================== */
+
+.image-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(40, 12, 8, 0.35);
+
+  color: #fff;
+
+  opacity: 0;
+
+  transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover .image-overlay {
+  opacity: 1;
+}
+
+.image-overlay i {
+  width: 50px;
+  height: 50px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.92);
+
+  color: var(--maroon);
+
+  font-size: 17px;
+}
+
+
+/* =====================================================
+   CAPTION
+===================================================== */
+
+.gallery-item figcaption {
+  position: absolute;
+
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  display: flex;
+
+  align-items: end;
+
+  justify-content: space-between;
+
+  gap: 15px;
+
+  padding: 45px 18px 17px;
+
+  background:
+    linear-gradient(
+      transparent,
+      rgba(0, 0, 0, 0.75)
+    );
+
+  color: #fff;
+}
+
+.gallery-item figcaption strong {
+  display: block;
+
+  margin-bottom: 4px;
+
+  font-size: 14px;
+}
+
+.gallery-item figcaption small {
+  display: block;
+
+  color: rgba(255, 255, 255, 0.7);
+
+  font-size: 10px;
+}
+
+.gallery-item figcaption > span {
+  color: var(--gold-light);
+
+  font-size: 11px;
+
+  font-weight: 800;
+}
+
+
+/* =====================================================
+   STATES
+===================================================== */
+
+.loading-box,
+.empty-box {
+  min-height: 260px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 10px;
+
+  border: 1px dashed var(--border);
+
+  border-radius: 15px;
+
+  background: var(--cream);
+
+  color: var(--muted);
+}
+
+.loading-box i,
+.empty-box i {
+  color: var(--gold);
+
+  font-size: 30px;
+}
+
+.empty-box h4 {
+  margin: 7px 0 0;
+
+  color: var(--text);
+}
+
+.empty-box p {
+  margin: 0;
+
+  font-size: 13px;
+}
+
+
+/* =====================================================
+   ERROR
+===================================================== */
+
+.error-box {
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  padding: 25px;
+
+  border-radius: 14px;
+
+  background: #fff6f5;
+
+  color: var(--maroon);
+}
+
+.error-box > i {
+  font-size: 25px;
+}
+
+.error-box h4 {
+  margin: 0 0 4px;
+
+  color: var(--text);
+
+  font-size: 17px;
+}
+
+.error-box p {
+  margin: 0;
+
+  color: var(--muted);
+
+  font-size: 13px;
+}
+
+
+/* =====================================================
+   MODAL
+===================================================== */
+
+.image-modal {
+  position: fixed;
+
+  z-index: 2000;
+
+  inset: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 30px;
+
+  background: rgba(20, 5, 3, 0.92);
+}
+
+.image-modal-content {
+  position: relative;
+
+  max-width: 1100px;
+  max-height: 90vh;
+
+  overflow: hidden;
+
+  border-radius: 12px;
+
+  background: #fff;
+}
+
+.image-modal-content > img {
+  display: block;
+
+  max-width: 100%;
+
+  max-height: 75vh;
+
+  object-fit: contain;
+}
+
+.modal-close {
+  position: absolute;
+
+  z-index: 2;
+
+  top: 15px;
+  right: 15px;
+
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border: 0;
+
+  border-radius: 50%;
+
+  background: rgba(0, 0, 0, 0.65);
+
+  color: #fff;
+
+  cursor: pointer;
+}
+
+.modal-caption {
+  padding: 17px 20px;
+}
+
+.modal-caption h3 {
+  margin: 0 0 5px;
+
+  color: var(--text);
+
+  font-size: 18px;
+}
+
+.modal-caption span {
+  color: var(--muted);
+
+  font-size: 12px;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 767px) {
+
+  .gallery-page {
+    padding: 65px 0 80px;
+  }
+
+  .masonry {
+    columns: 2 180px;
+
+    column-gap: 12px;
+  }
+
+  .gallery-item {
+    margin-bottom: 12px;
+  }
+
+  .gallery-item figcaption {
+    padding: 35px 12px 12px;
+  }
+}
+
+
+@media (max-width: 575px) {
+
+  .masonry {
+    columns: 1;
+  }
+
+  .filter-row {
+    gap: 6px;
+  }
+
+  .filter-row button {
+    padding: 8px 13px;
+
+    font-size: 11px;
+  }
+
+  .image-modal {
+    padding: 12px;
+  }
+}

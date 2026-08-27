@@ -1,11 +1,82 @@
 import { Component, OnInit } from '@angular/core';
 import { DemoDataService } from '../../core/services/demo-data.service';
-import { GalleryItem, PrasadProduct, PujaEvent, SiteContent, VideoItem } from '../../core/models/models';
-@Component({ selector: 'app-home', template: `<section class="hero" *ngIf="content"><div class="hero-overlay"></div><div class="container position-relative"><div class="row min-vh-hero align-items-center"><div class="col-lg-8"><div class="eyebrow">शारदीय नवरात्रि · 17–21 October 2026</div><h1>{{content.heroTitle}}</h1><p>{{content.heroText}}</p><div class="d-flex flex-wrap gap-3"><a routerLink="/puja-schedule" class="btn btn-gold btn-lg">देखें पूजा कार्यक्रम</a><a routerLink="/live-darshan" class="btn btn-outline-light btn-lg"><i class="pi pi-video"></i> Live Darshan</a><a routerLink="/prasad" class="btn btn-light btn-lg">प्रसाद प्राप्त करें</a></div></div></div></div></section>
-<section class="section-pad intro"><div class="container"><div class="row align-items-center g-5"><div class="col-lg-6"><div class="section-kicker">A celebration of faith</div><h2>माँ के चरणों में, पूरे परिवार के साथ</h2><p class="lead">राँची रेलवे दुर्गा पूजा समिति आपको पूजा, दर्शन, आरती और सेवा के इस पावन उत्सव का सहभागी बनने का निमंत्रण देती है।</p><a routerLink="/about" class="text-link">समिति के बारे में <i class="pi pi-arrow-right"></i></a></div><div class="col-lg-6"><div class="highlight-grid"><div><strong>5</strong><span>पावन दिन</span></div><div><strong>6+</strong><span>सेवा अनुभव</span></div><div><strong>2026</strong><span>उत्सव वर्ष</span></div></div></div></div></div></section>
-<section class="section-pad section-cream"><div class="container"><app-section-title eyebrow="Puja calendar" title="पूजा कार्यक्रम की झलक" actionLabel="पूरा कार्यक्रम" actionLink="/puja-schedule"></app-section-title><div class="row g-3" *ngIf="events.length; else loading"><div class="col-md-6 col-lg-3" *ngFor="let event of events.slice(0,4)"><article class="schedule-card"><span>{{event.dayName}}</span><h5>{{event.eventName}}</h5><p><i class="pi pi-clock"></i> {{event.startTime}}</p><small>{{event.venue}}</small></article></div></div><ng-template #loading><div class="loading-box">Loading programme…</div></ng-template></div></section>
-<section class="section-pad live-strip"><div class="container"><div class="row align-items-center g-4"><div class="col-lg-8"><span class="live-pill">● LIVE DARSHAN</span><h2>माँ का दर्शन, जहाँ भी आप हों</h2><p>उत्सव के महत्वपूर्ण क्षणों में हमारे साथ लाइव दर्शन से जुड़िए।</p></div><div class="col-lg-4 text-lg-end"><a routerLink="/live-darshan" class="btn btn-gold btn-lg">Live Darshan देखें</a></div></div></div></section>
-<section class="section-pad"><div class="container"><app-section-title eyebrow="Prasad & bhog" title="भक्ति का स्वाद, सेवा का भाव" actionLabel="प्रसाद देखें" actionLink="/prasad"></app-section-title><div class="row g-4"><div class="col-md-6" *ngFor="let product of products"><article class="product-feature"><img [src]="product.imageUrl" [alt]="product.name"><div><span class="small-label">{{product.availableDate}}</span><h3>{{product.name}}</h3><p>{{product.description}}</p><div class="d-flex align-items-center justify-content-between"><strong class="price">₹{{product.price}}</strong><a [routerLink]="['/booking']" [queryParams]="{product:product.id}" class="btn btn-maroon">Book Now</a></div></div></article></div></div></div></section>
-<section class="section-pad section-cream"><div class="container"><app-section-title eyebrow="Memories" title="उत्सव की झलकियाँ" actionLabel="सारी गैलरी" actionLink="/gallery"></app-section-title><div class="home-gallery"><img *ngFor="let image of gallery.slice(0,4)" [src]="image.imageUrl" [alt]="image.title"></div></div></section>
-<section class="section-pad committee"><div class="container text-center"><span class="section-kicker">Committee message</span><blockquote>“{{content?.committeeMessage}}”</blockquote><p>— Ranchi Railway Durga Puja Committee</p></div></section>` })
-export class HomeComponent implements OnInit { content?: SiteContent; events: PujaEvent[]=[]; products: PrasadProduct[]=[]; gallery: GalleryItem[]=[]; videos: VideoItem[]=[]; constructor(private data: DemoDataService) {} ngOnInit(): void { this.data.getSiteContent().subscribe(v=>this.content=v); this.data.getPujaSchedule().subscribe(v=>this.events=v); this.data.getPrasadProducts().subscribe(v=>this.products=v); this.data.getGallery().subscribe(v=>this.gallery=v); this.data.getVideos().subscribe(v=>this.videos=v); } }
+import {
+  GalleryItem,
+  PrasadProduct,
+  PujaEvent,
+  SiteContent,
+  VideoItem
+} from '../../core/models/models';
+
+@Component({
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
+})
+export class HomeComponent implements OnInit {
+
+  content?: SiteContent;
+
+  events: PujaEvent[] = [];
+  products: PrasadProduct[] = [];
+  gallery: GalleryItem[] = [];
+  videos: VideoItem[] = [];
+
+  isLoading = true;
+
+  constructor(private data: DemoDataService) {}
+
+  ngOnInit(): void {
+    this.loadHomeData();
+  }
+
+  private loadHomeData(): void {
+
+    this.data.getSiteContent().subscribe({
+      next: (data) => {
+        this.content = data;
+      },
+      error: (error) => {
+        console.error('Unable to load site content', error);
+      }
+    });
+
+    this.data.getPujaSchedule().subscribe({
+      next: (data) => {
+        this.events = data;
+      },
+      error: (error) => {
+        console.error('Unable to load puja schedule', error);
+      }
+    });
+
+    this.data.getPrasadProducts().subscribe({
+      next: (data) => {
+        this.products = data.slice(0, 4);
+      },
+      error: (error) => {
+        console.error('Unable to load prasad products', error);
+      }
+    });
+
+    this.data.getGallery().subscribe({
+      next: (data) => {
+        this.gallery = data;
+      },
+      error: (error) => {
+        console.error('Unable to load gallery', error);
+      }
+    });
+
+    this.data.getVideos().subscribe({
+      next: (data) => {
+        this.videos = data;
+        this.isLoading = false;
+      },
+      error: (error) => {
+        console.error('Unable to load videos', error);
+        this.isLoading = false;
+      }
+    });
+  }
+}

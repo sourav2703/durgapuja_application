@@ -1,0 +1,362 @@
+<!-- =====================================================
+     PAGE HEADER
+===================================================== -->
+
+<app-page-header
+  eyebrow="Sacred Connection"
+  title="Live Darshan"
+  subtitle="उत्सव के पावन क्षणों में माँ का दर्शन करें।">
+</app-page-header>
+
+
+<!-- =====================================================
+     LIVE STREAM SECTION
+===================================================== -->
+
+<section class="live-section">
+
+  <div class="container">
+
+
+    <!-- =========================
+         LOADING
+    ========================== -->
+
+    <div
+      *ngIf="loading"
+      class="loading-box">
+
+      <i class="pi pi-spin pi-spinner"></i>
+
+      <span>
+        Live stream लोड हो रही है...
+      </span>
+
+    </div>
+
+
+    <!-- =========================
+         ERROR
+    ========================== -->
+
+    <div
+      *ngIf="!loading && error"
+      class="error-box">
+
+      <div class="error-icon">
+
+        <i class="pi pi-exclamation-triangle"></i>
+
+      </div>
+
+      <div>
+
+        <h4>
+          Live Darshan लोड नहीं हो पाया
+        </h4>
+
+        <p>
+          कृपया थोड़ी देर बाद पुनः प्रयास करें।
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <!-- =========================
+         LIVE CONTENT
+    ========================== -->
+
+    <div
+      *ngIf="!loading && !error && stream"
+      class="live-wrapper">
+
+
+      <!-- HEADER -->
+
+      <div class="live-header">
+
+        <div>
+
+          <div
+            class="live-pill"
+            *ngIf="stream.isActive">
+
+            <span class="live-dot"></span>
+
+            LIVE DARSHAN
+
+          </div>
+
+          <span
+            class="not-live-pill"
+            *ngIf="!stream.isActive">
+
+            <i class="pi pi-clock"></i>
+
+            Currently Offline
+
+          </span>
+
+          <h2>
+            {{ stream.title }}
+          </h2>
+
+          <p>
+            माँ दुर्गा के पावन दर्शन से जुड़िए।
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- =========================
+           PLAYER
+      ========================== -->
+
+      <div
+        class="video-container"
+        *ngIf="stream.isActive && safeUrl">
+
+        <iframe
+          [src]="safeUrl"
+          title="Ranchi Railway Durga Puja - Live Darshan"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+
+      </div>
+
+
+      <!-- =========================
+           OFFLINE
+      ========================== -->
+
+      <div
+        *ngIf="!stream.isActive"
+        class="offline-state">
+
+        <div class="offline-icon">
+
+          <i class="pi pi-video"></i>
+
+        </div>
+
+        <span class="offline-label">
+          LIVE DARSHAN
+        </span>
+
+        <h3>
+          Live Darshan अभी उपलब्ध नहीं है
+        </h3>
+
+        <p>
+          कृपया निर्धारित पूजा समय पर पुनः आएँ।
+          माँ के पावन दर्शन के लिए हम आपका स्वागत करेंगे।
+        </p>
+
+        <a
+          routerLink="/puja-schedule"
+          class="btn btn-gold">
+
+          <i class="pi pi-calendar"></i>
+
+          पूजा कार्यक्रम देखें
+
+        </a>
+
+      </div>
+
+
+      <!-- =========================
+           STREAM INFORMATION
+      ========================== -->
+
+      <div
+        class="stream-info"
+        *ngIf="stream.isActive">
+
+        <div class="info-item">
+
+          <div class="info-icon">
+            <i class="pi pi-video"></i>
+          </div>
+
+          <div>
+            <strong>Live Stream</strong>
+            <span>पूजा स्थल से सीधा प्रसारण</span>
+          </div>
+
+        </div>
+
+
+        <div class="info-item">
+
+          <div class="info-icon">
+            <i class="pi pi-heart"></i>
+          </div>
+
+          <div>
+            <strong>माँ का दर्शन</strong>
+            <span>जहाँ भी आप हों, वहीं से जुड़ें</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     HOW IT WORKS
+===================================================== -->
+
+<section class="process-section">
+
+  <div class="container">
+
+    <div class="process-heading text-center">
+
+      <span class="section-kicker">
+        How it works
+      </span>
+
+      <h2>
+        दर्शन की <span>सरल यात्रा</span>
+      </h2>
+
+      <p>
+        कुछ सरल steps में माँ के पावन दर्शन से जुड़िए।
+      </p>
+
+    </div>
+
+
+    <div class="process-wrapper">
+
+
+      <!-- STEP 1 -->
+
+      <div class="process-item">
+
+        <div class="process-number">
+          01
+        </div>
+
+        <div class="process-icon">
+          <i class="pi pi-video"></i>
+        </div>
+
+        <h3>
+          Live शुरू
+        </h3>
+
+        <p>
+          निर्धारित समय पर वेबसाइट पर Live Darshan उपलब्ध होगा।
+        </p>
+
+      </div>
+
+
+      <div class="process-line"></div>
+
+
+      <!-- STEP 2 -->
+
+      <div class="process-item">
+
+        <div class="process-number">
+          02
+        </div>
+
+        <div class="process-icon">
+          <i class="pi pi-eye"></i>
+        </div>
+
+        <h3>
+          माँ का दर्शन
+        </h3>
+
+        <p>
+          घर बैठे माँ के पावन दर्शन का अनुभव प्राप्त करें।
+        </p>
+
+      </div>
+
+
+      <div class="process-line"></div>
+
+
+      <!-- STEP 3 -->
+
+      <div class="process-item">
+
+        <div class="process-number">
+          03
+        </div>
+
+        <div class="process-icon">
+          <i class="pi pi-heart"></i>
+        </div>
+
+        <h3>
+          भक्ति से जुड़ें
+        </h3>
+
+        <p>
+          पूजा और उत्सव के साथ श्रद्धा और भक्ति से जुड़िए।
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     CTA
+===================================================== -->
+
+<section class="darshan-cta">
+
+  <div class="container">
+
+    <div class="cta-content">
+
+      <div>
+
+        <span>
+          Puja Schedule
+        </span>
+
+        <h2>
+          माँ के हर पावन कार्यक्रम से जुड़े रहें।
+        </h2>
+
+      </div>
+
+      <a
+        routerLink="/puja-schedule"
+        class="btn btn-light">
+
+        पूरा कार्यक्रम देखें
+
+        <i class="pi pi-arrow-right"></i>
+
+      </a>
+
+    </div>
+
+  </div>
+
+</section>

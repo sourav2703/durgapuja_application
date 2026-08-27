@@ -1,0 +1,194 @@
+<app-page-header
+  eyebrow="Festival Memories"
+  title="उत्सव की झलकियाँ"
+  subtitle="भक्ति, रंग और समुदाय की यादें।">
+</app-page-header>
+
+
+<section class="gallery-page">
+
+  <div class="container">
+
+    <!-- PAGE INTRO -->
+
+    <div class="gallery-heading">
+
+      <span class="section-kicker">
+        Festival Memories
+      </span>
+
+      <h2>
+        उत्सव की <span>खूबसूरत यादें</span>
+      </h2>
+
+      <p>
+        राँची रेलवे दुर्गा पूजा के यादगार पलों,
+        पूजा और उत्सव की झलकियाँ।
+      </p>
+
+    </div>
+
+
+    <!-- FILTER -->
+
+    <div class="filter-row">
+
+      <button
+        type="button"
+        *ngFor="let item of categories"
+        [class.active]="category === item"
+        (click)="selectCategory(item)">
+
+        {{ item }}
+
+      </button>
+
+    </div>
+
+
+    <!-- LOADING -->
+
+    <div
+      *ngIf="loading"
+      class="loading-box">
+
+      <i class="pi pi-spin pi-spinner"></i>
+
+      <span>
+        Gallery loading...
+      </span>
+
+    </div>
+
+
+    <!-- ERROR -->
+
+    <div
+      *ngIf="!loading && error"
+      class="error-box">
+
+      <i class="pi pi-exclamation-triangle"></i>
+
+      <div>
+
+        <h4>
+          Gallery load नहीं हो पाई
+        </h4>
+
+        <p>
+          कृपया थोड़ी देर बाद दोबारा प्रयास करें।
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <!-- GALLERY -->
+
+    <div
+      class="masonry"
+      *ngIf="!loading && !error && filtered.length > 0">
+
+      <figure
+        class="gallery-item"
+        *ngFor="let item of filtered"
+        (click)="openImage(item)">
+
+        <img
+          [src]="item.imageUrl"
+          [alt]="item.title"
+          loading="lazy">
+
+        <div class="image-overlay">
+
+          <i class="pi pi-search-plus"></i>
+
+        </div>
+
+        <figcaption>
+
+          <div>
+
+            <strong>
+              {{ item.title }}
+            </strong>
+
+            <small>
+              {{ item.category }}
+            </small>
+
+          </div>
+
+          <span>
+            {{ item.year }}
+          </span>
+
+        </figcaption>
+
+      </figure>
+
+    </div>
+
+
+    <!-- NO DATA -->
+
+    <div
+      *ngIf="!loading && !error && filtered.length === 0"
+      class="empty-box">
+
+      <i class="pi pi-images"></i>
+
+      <h4>
+        कोई तस्वीर उपलब्ध नहीं है
+      </h4>
+
+      <p>
+        इस category में अभी कोई तस्वीर उपलब्ध नहीं है।
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- IMAGE MODAL -->
+
+<div
+  class="image-modal"
+  *ngIf="selectedImage as image"
+  (click)="closeImage()">
+
+  <div
+    class="image-modal-content"
+    (click)="$event.stopPropagation()">
+
+    <button
+      type="button"
+      class="modal-close"
+      (click)="closeImage()">
+
+      <i class="pi pi-times"></i>
+
+    </button>
+
+    <img
+      [src]="image.imageUrl"
+      [alt]="image.title">
+
+    <div class="modal-caption">
+
+      <h3>
+        {{ image.title }}
+      </h3>
+
+      <span>
+        {{ image.category }} · {{ image.year }}
+      </span>
+    </div>
+
+  </div>
+
+</div>

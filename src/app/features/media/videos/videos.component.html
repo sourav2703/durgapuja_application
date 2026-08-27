@@ -1,0 +1,221 @@
+<app-page-header
+  eyebrow="Watch & Remember"
+  title="वीडियो संग्रह"
+  subtitle="राँची रेलवे दुर्गा पूजा के महत्वपूर्ण क्षण।">
+</app-page-header>
+
+
+<section class="videos-page">
+
+  <div class="container">
+
+    <!-- INTRO -->
+
+    <div class="videos-heading">
+
+      <span class="section-kicker">
+        Watch The Moments
+      </span>
+
+      <h2>
+        भक्ति के <span>खूबसूरत पल</span>
+      </h2>
+
+      <p>
+        पूजा, आरती और उत्सव से जुड़े महत्वपूर्ण
+        पलों को फिर से देखिए।
+      </p>
+
+    </div>
+
+
+    <!-- LOADING -->
+
+    <div
+      *ngIf="loading"
+      class="loading-box">
+
+      <i class="pi pi-spin pi-spinner"></i>
+
+      <span>
+        Videos loading...
+      </span>
+
+    </div>
+
+
+    <!-- ERROR -->
+
+    <div
+      *ngIf="!loading && error"
+      class="error-box">
+
+      <i class="pi pi-exclamation-triangle"></i>
+
+      <div>
+
+        <h4>
+          Videos load नहीं हो पाए
+        </h4>
+
+        <p>
+          कृपया थोड़ी देर बाद पुनः प्रयास करें।
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <!-- VIDEO CARDS -->
+
+    <div
+      class="row g-4"
+      *ngIf="!loading && !error && items.length > 0">
+
+      <div
+        class="col-md-6 col-lg-4"
+        *ngFor="let video of items">
+
+        <article class="video-card">
+
+          <!-- THUMBNAIL -->
+
+          <button
+            type="button"
+            class="video-thumb"
+            (click)="openVideo(video)">
+
+            <img
+              [src]="video.thumbnailUrl"
+              [alt]="video.title"
+              loading="lazy">
+
+            <span class="play-button">
+
+              <i class="pi pi-play"></i>
+
+            </span>
+
+          </button>
+
+
+          <!-- CONTENT -->
+
+          <div class="video-content">
+
+            <span class="video-year">
+              {{ video.year }}
+            </span>
+
+            <h3>
+              {{ video.title }}
+            </h3>
+
+            <p>
+              {{ video.description }}
+            </p>
+
+            <button
+              type="button"
+              class="watch-link"
+              (click)="openVideo(video)">
+
+              वीडियो देखें
+
+              <i class="pi pi-arrow-right"></i>
+
+            </button>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </div>
+
+
+    <!-- NO DATA -->
+
+    <div
+      *ngIf="!loading && !error && items.length === 0"
+      class="empty-box">
+
+      <i class="pi pi-video"></i>
+
+      <h4>
+        अभी कोई वीडियो उपलब्ध नहीं है
+      </h4>
+
+      <p>
+        पूजा के वीडियो जल्द ही यहाँ उपलब्ध होंगे।
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- VIDEO MODAL -->
+
+<div
+  class="video-modal"
+  *ngIf="selected as video"
+  (click)="closeVideo()">
+
+  <div
+    class="video-modal-content"
+    (click)="$event.stopPropagation()">
+
+    <button
+      type="button"
+      class="modal-close"
+      (click)="closeVideo()">
+
+      <i class="pi pi-times"></i>
+
+    </button>
+
+
+    <div class="modal-video-icon">
+
+      <i class="pi pi-video"></i>
+
+    </div>
+
+
+    <span>
+      {{ video.year }}
+    </span>
+
+
+    <h3>
+      {{ video.title }}
+    </h3>
+
+
+    <p>
+      {{ video.description }}
+    </p>
+
+
+    <a
+      class="btn-youtube"
+      [href]="getYoutubeUrl(video.videoId)"
+      target="_blank"
+      rel="noopener noreferrer">
+
+      <i class="pi pi-youtube"></i>
+
+      YouTube पर देखें
+
+      <i class="pi pi-external-link"></i>
+
+    </a>
+
+  </div>
+
+</div>

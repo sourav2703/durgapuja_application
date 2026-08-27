@@ -1,0 +1,636 @@
+:host {
+  display: block;
+
+  --maroon: #711d18;
+  --maroon-dark: #42110e;
+  --gold: #d69a2b;
+  --gold-light: #f0c96d;
+  --cream: #fbf6ed;
+  --text: #302521;
+  --muted: #786c64;
+  --border: #e7ddd1;
+}
+
+
+/* =====================================================
+   LIVE SECTION
+===================================================== */
+
+.live-section {
+  padding: 85px 0 100px;
+
+  background: #fff;
+}
+
+.live-wrapper {
+  max-width: 1050px;
+
+  margin: 0 auto;
+}
+
+
+/* =====================================================
+   LIVE HEADER
+===================================================== */
+
+.live-header {
+  margin-bottom: 25px;
+}
+
+.live-pill {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  padding: 7px 13px;
+
+  margin-bottom: 14px;
+
+  border-radius: 50px;
+
+  background: #fff0ef;
+
+  color: #a52e27;
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+}
+
+.live-dot {
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+
+  background: #ed493f;
+
+  box-shadow:
+    0 0 0 5px rgba(237, 73, 63, 0.12);
+}
+
+.not-live-pill {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  padding: 7px 13px;
+
+  margin-bottom: 14px;
+
+  border-radius: 50px;
+
+  background: #f4f0eb;
+
+  color: #81766e;
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  letter-spacing: 1px;
+
+  text-transform: uppercase;
+}
+
+.live-header h2 {
+  margin: 0 0 8px;
+
+  color: var(--text);
+
+  font-size: clamp(28px, 4vw, 40px);
+
+  line-height: 1.2;
+}
+
+.live-header p {
+  margin: 0;
+
+  color: var(--muted);
+
+  font-size: 15px;
+}
+
+
+/* =====================================================
+   VIDEO
+===================================================== */
+
+.video-container {
+  position: relative;
+
+  width: 100%;
+
+  overflow: hidden;
+
+  aspect-ratio: 16 / 9;
+
+  border-radius: 18px;
+
+  background: #180605;
+
+  box-shadow:
+    0 20px 55px rgba(46, 19, 14, 0.16);
+}
+
+.video-container iframe {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  border: 0;
+}
+
+
+/* =====================================================
+   OFFLINE
+===================================================== */
+
+.offline-state {
+  min-height: 480px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 50px;
+
+  border-radius: 18px;
+
+  background:
+    radial-gradient(
+      circle at center,
+      #fff7e8,
+      #fbf4ec 55%,
+      #f6ede3
+    );
+
+  text-align: center;
+}
+
+.offline-icon {
+  width: 80px;
+  height: 80px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 22px;
+
+  border-radius: 50%;
+
+  background: #f4e3ca;
+
+  color: var(--maroon);
+
+  font-size: 28px;
+}
+
+.offline-label {
+  margin-bottom: 10px;
+
+  color: var(--maroon);
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  letter-spacing: 2px;
+}
+
+.offline-state h3 {
+  margin: 0 0 12px;
+
+  color: var(--text);
+
+  font-size: 28px;
+}
+
+.offline-state p {
+  max-width: 540px;
+
+  margin: 0 0 28px;
+
+  color: var(--muted);
+
+  line-height: 1.8;
+}
+
+
+/* =====================================================
+   BUTTON
+===================================================== */
+
+.btn {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 9px;
+
+  min-height: 48px;
+
+  padding: 0 22px;
+
+  border-radius: 8px;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  text-decoration: none;
+}
+
+.btn-gold {
+  background: var(--gold);
+
+  border-color: var(--gold);
+
+  color: #fff;
+}
+
+.btn-gold:hover {
+  background: #bd811d;
+
+  border-color: #bd811d;
+
+  color: #fff;
+}
+
+
+/* =====================================================
+   STREAM INFO
+===================================================== */
+
+.stream-info {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, 1fr);
+
+  gap: 15px;
+
+  margin-top: 20px;
+}
+
+.info-item {
+  display: flex;
+
+  align-items: center;
+
+  gap: 13px;
+
+  padding: 18px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 12px;
+
+  background: var(--cream);
+}
+
+.info-icon {
+  width: 43px;
+  height: 43px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 10px;
+
+  background: #f1dfc6;
+
+  color: var(--maroon);
+}
+
+.info-item strong {
+  display: block;
+
+  margin-bottom: 3px;
+
+  color: var(--text);
+
+  font-size: 14px;
+}
+
+.info-item span {
+  display: block;
+
+  color: var(--muted);
+
+  font-size: 12px;
+}
+
+
+/* =====================================================
+   PROCESS
+===================================================== */
+
+.process-section {
+  padding: 95px 0;
+
+  background: var(--cream);
+}
+
+.process-heading {
+  max-width: 650px;
+
+  margin: 0 auto 55px;
+}
+
+.section-kicker {
+  display: block;
+
+  margin-bottom: 10px;
+
+  color: var(--maroon);
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  letter-spacing: 2px;
+
+  text-transform: uppercase;
+}
+
+.process-heading h2 {
+  margin: 0;
+
+  color: var(--text);
+
+  font-size: clamp(32px, 4vw, 46px);
+}
+
+.process-heading h2 span {
+  color: var(--maroon);
+}
+
+.process-heading p {
+  margin: 14px 0 0;
+
+  color: var(--muted);
+
+  font-size: 15px;
+}
+
+
+/* =====================================================
+   PROCESS ITEMS
+===================================================== */
+
+.process-wrapper {
+  display: flex;
+
+  align-items: flex-start;
+
+  justify-content: center;
+}
+
+.process-item {
+  width: 280px;
+
+  text-align: center;
+}
+
+.process-number {
+  margin-bottom: 12px;
+
+  color: #b6a08c;
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  letter-spacing: 2px;
+}
+
+.process-icon {
+  width: 70px;
+  height: 70px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 auto 18px;
+
+  border: 1px solid #e3cfb4;
+
+  border-radius: 50%;
+
+  background: #fff;
+
+  color: var(--maroon);
+
+  font-size: 24px;
+
+  box-shadow:
+    0 10px 25px rgba(58, 32, 19, 0.06);
+}
+
+.process-item h3 {
+  margin: 0 0 8px;
+
+  color: var(--text);
+
+  font-size: 19px;
+}
+
+.process-item p {
+  margin: 0 auto;
+
+  max-width: 220px;
+
+  color: var(--muted);
+
+  font-size: 13px;
+
+  line-height: 1.7;
+}
+
+.process-line {
+  width: 90px;
+
+  height: 1px;
+
+  margin-top: 104px;
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #d8c6b2 0,
+      #d8c6b2 5px,
+      transparent 5px,
+      transparent 10px
+    );
+}
+
+
+/* =====================================================
+   CTA
+===================================================== */
+
+.darshan-cta {
+  padding: 45px 0;
+
+  background: var(--maroon-dark);
+}
+
+.cta-content {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 30px;
+}
+
+.cta-content span {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: var(--gold-light);
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+
+  text-transform: uppercase;
+}
+
+.cta-content h2 {
+  margin: 0;
+
+  color: #fff;
+
+  font-size: clamp(22px, 3vw, 32px);
+}
+
+.cta-content .btn {
+  background: #fff;
+
+  border-color: #fff;
+
+  color: var(--maroon-dark);
+
+  white-space: nowrap;
+}
+
+.cta-content .btn:hover {
+  background: #f8ead7;
+
+  border-color: #f8ead7;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 767px) {
+
+  .live-section,
+  .process-section {
+    padding: 65px 0 75px;
+  }
+
+  .video-container {
+    border-radius: 12px;
+  }
+
+  .offline-state {
+    min-height: 400px;
+
+    padding: 35px 20px;
+  }
+
+  .offline-state h3 {
+    font-size: 23px;
+  }
+
+  .stream-info {
+    grid-template-columns: 1fr;
+  }
+
+  .process-wrapper {
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 25px;
+  }
+
+  .process-line {
+    width: 1px;
+
+    height: 40px;
+
+    margin: 0;
+  }
+
+  .cta-content {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+  .cta-content .btn {
+    width: 100%;
+  }
+}
+
+
+@media (max-width: 575px) {
+
+  .live-header h2 {
+    font-size: 28px;
+  }
+
+  .offline-icon {
+    width: 65px;
+    height: 65px;
+
+    font-size: 23px;
+  }
+
+  .offline-state h3 {
+    font-size: 21px;
+  }
+
+  .offline-state p {
+    font-size: 13px;
+  }
+
+  .process-item {
+    width: 100%;
+  }
+
+  .process-item p {
+    max-width: 280px;
+  }
+}
