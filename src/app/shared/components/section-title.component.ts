@@ -1,0 +1,2 @@
+import { Component, Input } from '@angular/core';
+@Component({ selector: 'app-section-title', template: `<div class="section-title"><div><span class="section-kicker">{{eyebrow}}</span><h2>{{title}}</h2></div><a *ngIf="actionLink" [routerLink]="actionLink" class="text-link">{{actionLabel}} <i class="pi pi-arrow-right"></i></a></div>` }) export class SectionTitleComponent { @Input() eyebrow=''; @Input() title=''; @Input() actionLabel=''; @Input() actionLink=''; }
