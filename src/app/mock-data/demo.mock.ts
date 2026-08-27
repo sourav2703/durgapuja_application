@@ -1,6 +1,6 @@
 import { Booking, DashboardSummary, DeliveryZone, GalleryItem, LiveStream, PrasadProduct, PujaEvent, SiteContent, VideoItem } from '../core/models/models';
 
-export const SITE_CONTENT: SiteContent = { heroTitle: 'इस दुर्गा पूजा माँ के साथ जुड़िए', heroText: 'राँची रेलवे स्टेशन दुर्गा पूजा समिति के पावन उत्सव से जुड़िए। पूजा, आरती, दर्शन और माँ का प्रसाद अपने परिवार के साथ प्राप्त करें।', committeeMessage: 'श्रद्धा, सेवा और एकता के साथ हम सभी भक्तों का स्वागत करते हैं।', contactPhone: '+91 00000 00000', contactEmail: 'contact@ranchirailwaydurgapuja.org', location: 'Ranchi Railway परिसर, Ranchi, Jharkhand' };
+export const SITE_CONTENT: SiteContent = { heroTitle: 'इस दुर्गा पूजा माँ दुर्गा के साथ जुड़िए', heroText: 'राँची रेलवे स्टेशन दुर्गा पूजा समिति के पावन उत्सव से जुड़िए। पूजा, आरती, दर्शन और माँ का प्रसाद अपने परिवार के साथ प्राप्त करें।', committeeMessage: 'श्रद्धा, सेवा और एकता के साथ हम सभी भक्तों का स्वागत करते हैं।', contactPhone: '+91 00000 00000', contactEmail: 'contact@ranchirailwaydurgapuja.org', location: 'Ranchi Railway परिसर, Ranchi, Jharkhand' };
 export const PUJA_EVENTS: PujaEvent[] = [
   { id: 1, date: '2026-10-17', dayName: 'षष्ठी', eventName: 'बेल वरण', startTime: '06:00 PM', venue: 'मुख्य पंडाल', isActive: true },
   { id: 2, date: '2026-10-17', dayName: 'षष्ठी', eventName: 'संध्या आरती', startTime: '07:00 PM', venue: 'मुख्य पंडाल', isActive: true },
@@ -27,8 +27,8 @@ export const PRASAD_PRODUCTS: PrasadProduct[] = [
 
   {
     id: 2,
-    name: 'माँ का प्रसाद थाल',
-    description: 'माँ को अर्पित सात्विक भोजन से तैयार विशेष प्रसाद थाल।',
+    name: 'माँ दुर्गा का प्रसाद थाल',
+    description: 'माँ दुर्गा को अर्पित सात्विक भोजन से तैयार विशेष प्रसाद थाल।',
     price: 100,
     imageUrl: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/INDIAN_thali.jpg',
     availableDate: '2026-10-19',
@@ -67,7 +67,7 @@ export const PRASAD_PRODUCTS: PrasadProduct[] = [
   {
     id: 5,
     name: 'नवमी विशेष भोग',
-    description: 'नवमी के पावन दिन माँ को अर्पित विशेष सात्विक भोग एवं प्रसाद।',
+    description: 'नवमी के पावन दिन माँ दुर्गा को अर्पित विशेष सात्विक भोग एवं प्रसाद।',
     price: 150,
     imageUrl: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/A_complete_meal.jpg',
     availableDate: '2026-10-22',
@@ -80,7 +80,7 @@ export const PRASAD_PRODUCTS: PrasadProduct[] = [
   {
     id: 6,
     name: 'विशेष प्रसाद पैकेट',
-    description: 'माँ का आशीर्वाद एवं पारंपरिक भारतीय मिठाई से तैयार विशेष प्रसाद पैकेट।',
+    description: 'माँ दुर्गा का आशीर्वाद एवं पारंपरिक भारतीय मिठाई से तैयार विशेष प्रसाद पैकेट।',
     price: 50,
     imageUrl: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Desi_besan_ke_ladoo.jpg',
     availableDate: '2026-10-19',
@@ -134,5 +134,5 @@ export const VIDEO_ITEMS: VideoItem[] = [
 export const DASHBOARD: DashboardSummary = { todayBookings: 86, totalBookings: 1248, revenue: 124800, pendingOrders: 31, availableBhog: 183, homeDeliveries: 68 };
 export const DEMO_BOOKINGS: Booking[] = [
   { id: 'RRP-2026-000123', customerName: 'Amit Kumar', mobile: '9876543210', email: 'amit@example.com', eventDate: '2026-10-20', item: { productId: 1, productName: 'महाभोग', quantity: 2, unitPrice: 100 }, collectionMethod: 'HOME_DELIVERY', prasadAmount: 200, deliveryCharge: 40, totalAmount: 240, status: 'CONFIRMED', createdAt: '2026-08-27' },
-  { id: 'RRP-2026-000124', customerName: 'Suman Devi', mobile: '9876543211', email: 'suman@example.com', eventDate: '2026-10-19', item: { productId: 2, productName: 'माँ का प्रसाद थाल', quantity: 1, unitPrice: 100 }, collectionMethod: 'ON_PREMISES', prasadAmount: 100, deliveryCharge: 0, totalAmount: 100, status: 'PENDING', createdAt: '2026-08-27' }
+  { id: 'RRP-2026-000124', customerName: 'Suman Devi', mobile: '9876543211', email: 'suman@example.com', eventDate: '2026-10-19', item: { productId: 2, productName: 'माँ दुर्गा का प्रसाद थाल', quantity: 1, unitPrice: 100 }, collectionMethod: 'ON_PREMISES', prasadAmount: 100, deliveryCharge: 0, totalAmount: 100, status: 'PENDING', createdAt: '2026-08-27' }
 ];

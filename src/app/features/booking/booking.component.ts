@@ -16,7 +16,7 @@ import { DemoDataService } from '../../core/services/demo-data.service';
     <app-page-header
       eyebrow="Devotee service"
       title="प्रसाद बुकिंग"
-      subtitle="कुछ सरल चरणों में माँ का प्रसाद बुक करें।">
+      subtitle="कुछ सरल चरणों में माँ दुर्गा का प्रसाद बुक करें।">
     </app-page-header>
 
     <section class="section-pad">
