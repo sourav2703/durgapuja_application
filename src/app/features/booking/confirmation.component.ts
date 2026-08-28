@@ -1,2 +1,62 @@
-import { Component, OnInit } from '@angular/core'; import { Router } from '@angular/router'; import { Booking } from '../../core/models/models'; import { BookingService } from '../../core/services/booking.service';
-@Component({selector:'app-confirmation',template:`<section class="confirmation-page"><div class="confirmation-card" *ngIf="booking; else missing"><div class="success-check"><i class="pi pi-check"></i></div><span class="section-kicker">Payment successful</span><h1>Booking Confirmed</h1><p>माँ दुर्गा का प्रसाद बुक करने के लिए धन्यवाद।</p><div class="booking-reference">{{booking.id}}</div><div class="confirmation-details"><span>Prasad <b>{{booking.item.productName}}</b></span><span>Date <b>{{booking.eventDate}}</b></span><span>Quantity <b>{{booking.item.quantity}}</b></span><span>Amount <b>₹{{booking.totalAmount}}</b></span></div><div class="qr-demo"><div class="fake-qr">▣<br>▦</div><div><h5>Collection QR</h5><p>प्रसाद लेते समय यह QR और booking reference दिखाएँ।</p></div></div><div class="qr-flow"><span>Scan QR</span><i class="pi pi-arrow-right"></i><span>Booking details</span><i class="pi pi-arrow-right"></i><span>Collect Prasad</span></div><a routerLink="/" class="btn btn-maroon mt-4">Back to Home</a></div><ng-template #missing><div class="confirmation-card"><h2>No booking found</h2><a routerLink="/prasad" class="btn btn-maroon">Choose Prasad</a></div></ng-template></section>`}) export class ConfirmationComponent implements OnInit{booking:Booking|null=null;constructor(private bookings:BookingService,private router:Router){}ngOnInit():void{this.booking=this.bookings.currentBooking();}}
+import { Component, OnInit } from '@angular/core';
+import {
+  DomSanitizer,
+  SafeResourceUrl
+} from '@angular/platform-browser';
+
+import { Booking } from '../../core/models/models';
+import { BookingService } from '../../core/services/booking.service';
+
+@Component({
+  selector: 'app-confirmation',
+  templateUrl: './confirmation.component.html',
+  styleUrls: ['./confirmation.component.css']
+})
+export class ConfirmationComponent implements OnInit {
+
+  booking: Booking | null = null;
+
+  safeMapUrl?: SafeResourceUrl;
+
+  /*
+   * Google Maps navigation URL
+   * Used when user clicks "Google Maps में रास्ता खोलें"
+   */
+  mapNavigationUrl =
+    'https://www.google.com/maps/dir/?api=1&destination=Ranchi+Railway+Station,+Ranchi,+Jharkhand';
+
+
+  constructor(
+    private bookings: BookingService,
+    private sanitizer: DomSanitizer
+  ) {}
+
+
+  ngOnInit(): void {
+
+    /*
+     * Get current booking
+     */
+    this.booking = this.bookings.currentBooking();
+
+
+    /*
+     * Google Maps EMBED URL
+     *
+     * This URL is specifically used inside iframe.
+     */
+    const mapEmbedUrl =
+      'https://www.google.com/maps?q=Ranchi+Railway+Station,+Ranchi,+Jharkhand&output=embed';
+
+
+    /*
+     * Trust the Google Maps resource URL
+     * so Angular can display it inside iframe.
+     */
+    this.safeMapUrl =
+      this.sanitizer.bypassSecurityTrustResourceUrl(
+        mapEmbedUrl
+      );
+  }
+
+}

@@ -1,0 +1,432 @@
+<!-- =========================================================
+     CONFIRMATION PAGE
+========================================================= -->
+
+<section class="confirmation-page">
+
+  <div class="container">
+
+    <!-- =====================================================
+         BOOKING FOUND
+    ====================================================== -->
+
+    <div
+      class="confirmation-card"
+      *ngIf="booking; else missingBooking">
+
+
+      <!-- ===================================================
+           SUCCESS ICON
+      ==================================================== -->
+
+      <div class="success-check">
+
+        <i class="pi pi-check"></i>
+
+      </div>
+
+
+      <!-- ===================================================
+           KICKER
+      ==================================================== -->
+
+      <span class="section-kicker">
+
+        Payment Successful
+
+      </span>
+
+
+      <!-- ===================================================
+           TITLE
+      ==================================================== -->
+
+      <h1>
+
+        {{
+          booking.experience === 'QUICK_DARSHAN'
+            ? 'शीघ्र दर्शन Pass Confirmed'
+            : 'Booking Confirmed'
+        }}
+
+      </h1>
+
+
+      <!-- ===================================================
+           MESSAGE
+      ==================================================== -->
+
+      <p class="confirmation-message">
+
+        {{
+          booking.experience === 'QUICK_DARSHAN'
+            ? 'आपका शीघ्र दर्शन पास सफलतापूर्वक बुक हो गया है।'
+            : 'माँ दुर्गा का प्रसाद बुक करने के लिए धन्यवाद।'
+        }}
+
+      </p>
+
+
+      <!-- ===================================================
+           BOOKING REFERENCE
+      ==================================================== -->
+
+      <div class="reference-label">
+        Booking Reference
+      </div>
+
+      <div class="booking-reference">
+
+        {{ booking.id }}
+
+      </div>
+
+
+      <!-- ===================================================
+           BOOKING DETAILS
+      ==================================================== -->
+
+      <div class="confirmation-details">
+
+
+        <!-- PRODUCT / PASS -->
+
+        <div class="detail-item">
+
+          <span>
+
+            {{
+              booking.experience === 'QUICK_DARSHAN'
+                ? 'Pass'
+                : 'Prasad'
+            }}
+
+          </span>
+
+          <strong>
+
+            {{ booking.item.productName }}
+
+          </strong>
+
+        </div>
+
+
+        <!-- DATE -->
+
+        <div class="detail-item">
+
+          <span>
+            Date
+          </span>
+
+          <strong>
+            {{ booking.eventDate }}
+          </strong>
+
+        </div>
+
+
+        <!-- QUANTITY -->
+
+        <div class="detail-item">
+
+          <span>
+            Quantity
+          </span>
+
+          <strong>
+            {{ booking.item.quantity }}
+          </strong>
+
+        </div>
+
+
+        <!-- AMOUNT -->
+
+        <div class="detail-item">
+
+          <span>
+            Amount
+          </span>
+
+          <strong>
+            ₹{{ booking.totalAmount }}
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      <!-- ===================================================
+           QR SECTION
+      ==================================================== -->
+
+      <div class="qr-demo">
+
+
+        <!-- QR -->
+
+        <div class="fake-qr">
+
+          <span>▣</span>
+          <span>▦</span>
+          <span>▣</span>
+
+        </div>
+
+
+        <!-- QR INFORMATION -->
+
+        <div class="qr-content">
+
+          <h5>
+
+            {{
+              booking.experience === 'QUICK_DARSHAN'
+                ? 'Special Entry QR'
+                : 'Collection QR'
+            }}
+
+          </h5>
+
+          <p>
+
+            अपना QR और booking reference
+            प्रवेश / collection के समय दिखाएँ।
+
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- ===================================================
+           QR FLOW
+      ==================================================== -->
+
+      <div class="qr-flow">
+
+        <span>
+          Scan QR
+        </span>
+
+        <i class="pi pi-arrow-right"></i>
+
+        <span>
+          Booking Verify
+        </span>
+
+        <i class="pi pi-arrow-right"></i>
+
+        <span>
+
+          {{
+            booking.experience === 'QUICK_DARSHAN'
+              ? 'Special Entry'
+              : 'Collect Prasad'
+          }}
+
+        </span>
+
+      </div>
+
+
+      <!-- ===================================================
+           SPECIAL ENTRY MAP
+           ONLY QUICK DARSHAN
+      ==================================================== -->
+
+      <div
+        class="special-entry-map"
+        *ngIf="
+          booking.experience === 'QUICK_DARSHAN'
+        ">
+
+
+        <!-- MAP HEADER -->
+
+        <div class="map-header">
+
+          <div>
+
+            <span class="map-kicker">
+              SPECIAL ENTRY ROUTE
+            </span>
+
+            <h3>
+              शीघ्र दर्शन प्रवेश मार्ग
+            </h3>
+
+            <p>
+              आपके Special Entry Pass के लिए
+              निर्धारित प्रवेश स्थल।
+            </p>
+
+          </div>
+
+
+          <div class="map-icon">
+
+            <i class="pi pi-map-marker"></i>
+
+          </div>
+
+        </div>
+
+
+        <!-- =================================================
+             GOOGLE MAP
+        ================================================== -->
+
+        <div class="map-container">
+
+          <iframe
+            *ngIf="safeMapUrl"
+            [src]="safeMapUrl"
+            title="Ranchi Railway Station Special Entry Location"
+            loading="lazy"
+            allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+
+        </div>
+
+
+        <!-- =================================================
+             NAVIGATION BUTTON
+        ================================================== -->
+
+        <a
+          [href]="mapNavigationUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="map-open-btn">
+
+          <i class="pi pi-directions"></i>
+
+          Google Maps में रास्ता खोलें
+
+          <i class="pi pi-external-link"></i>
+
+        </a>
+
+
+        <!-- =================================================
+             MAP NOTE
+        ================================================== -->
+
+        <div class="map-note">
+
+          <i class="pi pi-info-circle"></i>
+
+          <span>
+            कृपया अपने Special Entry Pass के अनुसार
+            निर्धारित प्रवेश स्थल पर पहुँचें।
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <!-- ===================================================
+           PRASAD COLLECTION INFORMATION
+           ONLY NORMAL BOOKING
+      ==================================================== -->
+
+      <div
+        class="collection-info"
+        *ngIf="
+          booking.experience !== 'QUICK_DARSHAN'
+        ">
+
+        <div class="collection-icon">
+
+          <i class="pi pi-shopping-bag"></i>
+
+        </div>
+
+        <div>
+
+          <strong>
+            प्रसाद Collection
+          </strong>
+
+          <p>
+            अपना booking reference और QR दिखाकर
+            निर्धारित स्थान से प्रसाद प्राप्त करें।
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- ===================================================
+           BACK HOME
+      ==================================================== -->
+
+      <a
+        routerLink="/"
+        class="confirmation-home">
+
+        <i class="pi pi-home"></i>
+
+        Back to Home
+
+      </a>
+
+    </div>
+
+
+    <!-- =====================================================
+         BOOKING NOT FOUND
+    ====================================================== -->
+
+    <ng-template #missingBooking>
+
+      <div class="confirmation-card missing-card">
+
+
+        <div class="missing-icon">
+
+          <i class="pi pi-file"></i>
+
+        </div>
+
+
+        <span class="section-kicker">
+          Booking
+        </span>
+
+
+        <h2>
+          Booking नहीं मिली
+        </h2>
+
+
+        <p>
+          इस समय कोई active booking उपलब्ध नहीं है।
+        </p>
+
+
+        <a
+          routerLink="/prasad"
+          class="confirmation-home">
+
+          <i class="pi pi-arrow-left"></i>
+
+          प्रसाद देखें
+
+        </a>
+
+      </div>
+
+    </ng-template>
+
+  </div>
+
+</section>

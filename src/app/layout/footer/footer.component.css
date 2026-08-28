@@ -1,0 +1,197 @@
+/* =========================================================
+   FOOTER
+   LIGHT BHAGWA / SAFFRON THEME
+========================================================= */
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+
+/* =========================================================
+   FOOTER MAIN
+========================================================= */
+
+.site-footer {
+  margin-top: 10px;
+
+  padding: 24px 0 0;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fff3e3 0%,
+      #fffaf4 55%,
+      #fff7ed 100%
+    );
+
+  border-top: 1px solid #f0cf9f;
+
+  color: #6e4a32;
+}
+
+
+/* =========================================================
+   FOOTER TITLE
+========================================================= */
+
+.footer-title {
+  margin-bottom: 7px;
+
+  color: #d67519;
+
+  font-size: 17px;
+  font-weight: 900;
+
+  line-height: 1.2;
+}
+
+.site-footer p {
+  max-width: 360px;
+
+  margin: 0;
+
+  color: #806b5a;
+
+  font-size: 8px;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   FOOTER HEADINGS
+========================================================= */
+
+.site-footer h6 {
+  margin: 0 0 8px;
+
+  color: #58301d;
+
+  font-size: 9px;
+  font-weight: 900;
+
+  letter-spacing: .5px;
+}
+
+
+/* =========================================================
+   FOOTER LINKS
+========================================================= */
+
+.site-footer a {
+  display: block;
+
+  width: fit-content;
+
+  margin-bottom: 5px;
+
+  color: #806957 !important;
+
+  font-size: 8px;
+  font-weight: 600;
+
+  text-decoration: none !important;
+
+  transition: .2s ease;
+}
+
+.site-footer a:hover {
+  padding-left: 3px;
+
+  color: #df7418 !important;
+}
+
+
+/* =========================================================
+   FOOTER BOTTOM
+========================================================= */
+
+.footer-bottom {
+  margin-top: 17px;
+
+  padding: 10px 0;
+
+  color: #987d68;
+
+  border-top: 1px solid #eadfd4;
+
+  font-size: 7px;
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   DECORATIVE TOP LINE
+========================================================= */
+
+.site-footer::before {
+  content: "";
+
+  display: block;
+
+  width: 45px;
+  height: 3px;
+
+  margin: -25px auto 20px;
+
+  background: #e27a18;
+
+  border-radius: 5px;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 767px) {
+
+  .site-footer {
+    padding-top: 20px;
+  }
+
+  .footer-title {
+    font-size: 15px;
+  }
+
+  .site-footer p {
+    font-size: 8px;
+  }
+
+  .site-footer h6 {
+    margin-top: 5px;
+  }
+
+  .footer-bottom {
+    margin-top: 12px;
+
+    padding: 9px 10px;
+
+    font-size: 7px;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+  .site-footer {
+    padding-top: 18px;
+  }
+
+  .footer-title {
+    font-size: 14px;
+  }
+
+  .site-footer a {
+    font-size: 8px;
+  }
+
+}

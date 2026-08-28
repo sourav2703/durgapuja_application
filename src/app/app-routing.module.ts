@@ -10,12 +10,16 @@ import { LiveDarshanComponent } from './features/live-darshan/live-darshan.compo
 
 import { PrasadComponent } from './features/prasad/prasad.component';
 import { BookingComponent } from './features/booking/booking.component';
+import { BookingRedirectComponent } from './features/booking/booking-redirect.component';
 import { ConfirmationComponent } from './features/booking/confirmation.component';
 import { InfoComponent } from './features/info/info.component';
 import { AdminLoginComponent } from './features/admin/admin-login.component';
 import { AdminComponent } from './features/admin/admin.component';
 import { GalleryComponent } from './features/media/gallery/gallery.component';
 import { VideosComponent } from './features/media/videos/videos.component';
+import { AccessComponent } from './features/access/access.component';
+import { QuickDarshanComponent } from './features/quick-darshan/quick-darshan.component';
+import { VerifiedExperienceGuard } from './core/guards/verified-experience.guard';
 
 
 
@@ -46,12 +50,28 @@ const routes: Routes = [
   {
     path: 'prasad',
     component: PrasadComponent,
+    canActivate: [VerifiedExperienceGuard],
+    data: { experience: 'BHOG' },
     title: 'Prasad & Bhog | RRDP'
   },
 
   {
+    path: 'access',
+    component: AccessComponent,
+    title: 'Verify Access | RRDP'
+  },
+
+  {
+    path: 'quick-darshan',
+    component: QuickDarshanComponent,
+    canActivate: [VerifiedExperienceGuard],
+    data: { experience: 'QUICK_DARSHAN' },
+    title: 'शीघ्र दर्शन | RRDP'
+  },
+
+  {
     path: 'booking',
-    component: BookingComponent,
+    component: BookingRedirectComponent,
     title: 'Book Prasad | RRDP'
   },
 

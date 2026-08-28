@@ -1,103 +1,19 @@
-<!-- =====================================================
-     PAGE HEADER
-===================================================== -->
-
-<app-page-header
-  eyebrow="Sacred Connection · 2026"
-  title="Live Darshan"
-  subtitle="राँची रेलवे स्टेशन दुर्गा पूजा समिति के पावन पूजा एवं आरती कार्यक्रमों का सीधा दर्शन।">
-</app-page-header>
-
-
-<!-- =====================================================
-     LIVE STATUS
-===================================================== -->
-
-<section class="live-status-section">
-
-  <div class="container">
-
-    <div
-      class="live-status-card"
-      [class.offline]="!stream?.isActive">
-
-      <div class="status-left">
-
-        <div
-          class="status-indicator"
-          [class.offline-indicator]="!stream?.isActive">
-
-          <span class="status-dot"></span>
-
-        </div>
-
-        <div>
-
-          <span class="status-label">
-
-            {{ stream?.isActive
-              ? 'LIVE DARSHAN'
-              : 'CURRENTLY OFFLINE' }}
-
-          </span>
-
-          <h3>
-
-            {{
-              stream?.isActive
-                ? stream?.title
-                : 'अगला Live Darshan जल्द उपलब्ध होगा'
-            }}
-
-          </h3>
-
-          <p *ngIf="stream?.isActive">
-
-            Ranchi Railway Station Durga Puja Pandal
-            से सीधा प्रसारण।
-
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div
-        class="status-right"
-        *ngIf="stream?.isActive">
-
-        <span>
-          STATUS
-        </span>
-
-        <strong>
-          ● LIVE NOW
-        </strong>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     MAIN LIVE PLAYER
-===================================================== -->
+<!-- =========================================================
+     LIVE DARSHAN
+========================================================= -->
 
 <section class="live-section">
 
   <div class="container">
 
 
-    <!-- LOADING -->
+    <!-- =====================================================
+         LOADING
+    ====================================================== -->
 
     <div
       *ngIf="loading"
-      class="loading-box">
+      class="status-box">
 
       <i class="pi pi-spin pi-spinner"></i>
 
@@ -108,62 +24,69 @@
     </div>
 
 
-    <!-- ERROR -->
+    <!-- =====================================================
+         ERROR
+    ====================================================== -->
 
     <div
       *ngIf="!loading && error"
-      class="error-box">
+      class="status-box error">
 
-      <div class="error-icon">
-
-        <i class="pi pi-exclamation-triangle"></i>
-
-      </div>
+      <i class="pi pi-exclamation-triangle"></i>
 
       <div>
 
-        <h4>
+        <strong>
           Live Darshan उपलब्ध नहीं हो पाया
-        </h4>
+        </strong>
 
-        <p>
+        <span>
           कृपया थोड़ी देर बाद पुनः प्रयास करें।
-        </p>
+        </span>
 
       </div>
 
     </div>
 
 
-    <!-- LIVE -->
+    <!-- =====================================================
+         LIVE CARD
+    ====================================================== -->
 
     <div
       *ngIf="!loading && !error && stream"
-      class="live-wrapper">
+      class="live-card">
 
 
-      <div class="live-header">
+      <!-- HEADER -->
+
+      <div class="live-card-header">
 
         <div>
 
-          <div
-            class="live-pill"
-            *ngIf="stream.isActive">
+
+          <!-- LIVE -->
+
+          <span
+            *ngIf="stream.isActive"
+            class="live-badge">
 
             <span class="live-dot"></span>
 
-            LIVE DARSHAN
+            LIVE NOW
 
-          </div>
+          </span>
 
+
+          <!-- OFFLINE -->
 
           <span
-            class="not-live-pill"
-            *ngIf="!stream.isActive">
+            *ngIf="!stream.isActive"
+            class="offline-badge">
 
             <i class="pi pi-clock"></i>
 
-            Currently Offline
+            CURRENTLY OFFLINE
 
           </span>
 
@@ -174,8 +97,8 @@
 
 
           <p>
-            {{ stream.description ||
-              'माँ दुर्गा के पावन दर्शन से जुड़िए।' }}
+            राँची रेलवे स्टेशन दुर्गा पूजा पंडाल से
+            माँ दुर्गा के पावन दर्शन।
           </p>
 
         </div>
@@ -183,11 +106,13 @@
       </div>
 
 
-      <!-- PLAYER -->
+      <!-- ===================================================
+           LIVE VIDEO
+      ==================================================== -->
 
       <div
-        class="video-container"
-        *ngIf="stream.isActive && safeUrl">
+        *ngIf="stream.isActive && safeUrl"
+        class="video-container">
 
         <iframe
           [src]="safeUrl"
@@ -199,59 +124,19 @@
       </div>
 
 
-      <!-- NO VIDEO CONFIGURED -->
-
-      <div
-        class="offline-state"
-        *ngIf="stream.isActive && !safeUrl">
-
-        <div class="offline-icon">
-
-          <i class="pi pi-video"></i>
-
-        </div>
-
-        <span class="offline-label">
-          LIVE DARSHAN
-        </span>
-
-        <h3>
-          Live stream जल्द उपलब्ध होगा
-        </h3>
-
-        <p>
-          निर्धारित पूजा कार्यक्रम के दौरान
-          यहाँ Live Darshan उपलब्ध कराया जाएगा।
-        </p>
-
-        <a
-          routerLink="/puja-schedule"
-          class="btn btn-gold">
-
-          <i class="pi pi-calendar"></i>
-
-          पूजा कार्यक्रम देखें
-
-        </a>
-
-      </div>
-
-
-      <!-- OFFLINE -->
+      <!-- ===================================================
+           OFFLINE
+      ==================================================== -->
 
       <div
         *ngIf="!stream.isActive"
         class="offline-state">
 
-        <div class="offline-icon">
+        <div class="state-icon">
 
           <i class="pi pi-video"></i>
 
         </div>
-
-        <span class="offline-label">
-          LIVE DARSHAN
-        </span>
 
         <h3>
           Live Darshan अभी उपलब्ध नहीं है
@@ -259,31 +144,12 @@
 
         <p>
           निर्धारित पूजा या आरती के समय पुनः आएँ।
-          माँ दुर्गा के पावन दर्शन से जुड़ने के लिए
-          हम आपका स्वागत करेंगे।
+          माँ दुर्गा के पावन दर्शन से जुड़ें।
         </p>
-
-
-        <div class="offline-next">
-
-          <span>
-            NEXT DARSHAN
-          </span>
-
-          <strong>
-            पूजा एवं संध्या आरती
-          </strong>
-
-          <small>
-            निर्धारित पूजा कार्यक्रम के अनुसार
-          </small>
-
-        </div>
-
 
         <a
           routerLink="/puja-schedule"
-          class="btn btn-gold">
+          class="action-button">
 
           <i class="pi pi-calendar"></i>
 
@@ -294,72 +160,62 @@
       </div>
 
 
-      <!-- STREAM INFO -->
+      <!-- ===================================================
+           STREAM INFORMATION
+      ==================================================== -->
 
       <div
-        class="stream-info"
-        *ngIf="stream.isActive">
+        *ngIf="stream.isActive"
+        class="stream-info">
 
 
-        <div class="info-item">
+        <div>
 
-          <div class="info-icon">
-            <i class="pi pi-video"></i>
-          </div>
+          <i class="pi pi-video"></i>
 
-          <div>
+          <span>
 
             <strong>
               Live Broadcast
             </strong>
 
-            <span>
-              पूजा स्थल से सीधा प्रसारण
-            </span>
+            पूजा स्थल से सीधा प्रसारण
 
-          </div>
+          </span>
 
         </div>
 
 
-        <div class="info-item">
+        <div>
 
-          <div class="info-icon">
-            <i class="pi pi-map-marker"></i>
-          </div>
+          <i class="pi pi-map-marker"></i>
 
-          <div>
+          <span>
 
             <strong>
               Live From
             </strong>
 
-            <span>
-              Ranchi Railway Station Durga Puja Pandal
-            </span>
+            Ranchi Railway Station
 
-          </div>
+          </span>
 
         </div>
 
 
-        <div class="info-item">
+        <div>
 
-          <div class="info-icon">
-            <i class="pi pi-heart"></i>
-          </div>
+          <i class="pi pi-heart"></i>
 
-          <div>
+          <span>
 
             <strong>
               Digital Darshan
             </strong>
 
-            <span>
-              जहाँ भी हों, वहीं से जुड़ें
-            </span>
+            घर बैठे माँ के दर्शन
 
-          </div>
+          </span>
 
         </div>
 
@@ -372,37 +228,40 @@
 </section>
 
 
-<!-- =====================================================
-     UPCOMING LIVE
-===================================================== -->
 
-<section class="upcoming-section">
+<!-- =========================================================
+     UPCOMING DARSHAN
+========================================================= -->
+
+<section
+  class="upcoming-section"
+  *ngIf="upcomingStreams.length">
 
   <div class="container">
 
+
     <div class="section-heading">
 
-      <span class="section-kicker">
-        UPCOMING LIVE
-      </span>
+      <div>
 
-      <h2>
-        आने वाले
-        <span>Live कार्यक्रम</span>
-      </h2>
+        <span class="section-kicker">
+          UPCOMING DARSHAN
+        </span>
+
+        <h2>
+          आने वाले <span>Live कार्यक्रम</span>
+        </h2>
+
+      </div>
 
       <p>
-        पूजा एवं आरती के महत्वपूर्ण कार्यक्रमों
-        के दौरान Live Darshan से जुड़ें।
+        आगामी पूजा एवं आरती के Live कार्यक्रम।
       </p>
 
     </div>
 
 
-    <div
-      class="upcoming-list"
-      *ngIf="upcomingStreams.length">
-
+    <div class="upcoming-list">
 
       <div
         class="upcoming-item"
@@ -412,7 +271,9 @@
         ">
 
 
-        <div class="upcoming-date">
+        <!-- DATE -->
+
+        <div class="date-box">
 
           <strong>
             {{ item.eventDate | date:'dd' }}
@@ -425,11 +286,13 @@
         </div>
 
 
-        <div class="upcoming-info">
+        <!-- DETAILS -->
 
-          <span>
-            {{ item.dayName || 'PUJA PROGRAMME' }}
-          </span>
+        <div class="upcoming-details">
+
+          <small>
+            {{ item.dayName }}
+          </small>
 
           <h3>
             {{ item.title }}
@@ -442,6 +305,8 @@
         </div>
 
 
+        <!-- TIME -->
+
         <div class="upcoming-time">
 
           <i class="pi pi-clock"></i>
@@ -450,26 +315,9 @@
             {{ item.startTime }}
           </strong>
 
-          <span>
-            Scheduled
-          </span>
-
         </div>
 
       </div>
-
-    </div>
-
-
-    <div
-      *ngIf="!upcomingStreams.length"
-      class="empty-box">
-
-      <i class="pi pi-calendar"></i>
-
-      <h4>
-        कोई upcoming Live programme नहीं है
-      </h4>
 
     </div>
 
@@ -478,559 +326,121 @@
 </section>
 
 
-<!-- =====================================================
+
+<!-- =========================================================
      RECENTLY ENDED
-===================================================== -->
+========================================================= -->
 
-<section class="recordings-section">
+<section
+  class="recordings-section"
+  *ngIf="recentlyEnded.length">
 
   <div class="container">
+
 
     <div class="section-heading">
 
-      <span class="section-kicker">
-        RECENTLY ENDED
-      </span>
+      <div>
 
-      <h2>
-        हाल ही में समाप्त हुए
-        <span>Live कार्यक्रम</span>
-      </h2>
-
-      <p>
-        हाल ही में हुए Live Darshan की recordings यहाँ देखें।
-      </p>
-
-    </div>
-
-
-    <div
-      class="row g-4"
-      *ngIf="recentlyEnded.length">
-
-
-      <div
-        class="col-md-6 col-lg-4"
-        *ngFor="
-          let item of recentlyEnded;
-          trackBy: trackById
-        ">
-
-        <article class="recording-card">
-
-
-          <div class="recording-thumbnail">
-
-            <img
-              *ngIf="item.thumbnailUrl"
-              [src]="item.thumbnailUrl"
-              [alt]="item.title">
-
-
-            <div class="recording-overlay">
-
-              <i class="pi pi-play"></i>
-
-            </div>
-
-
-            <span class="ended-badge">
-
-              <i class="pi pi-check-circle"></i>
-
-              LIVE ENDED
-
-            </span>
-
-          </div>
-
-
-          <div class="recording-body">
-
-            <span>
-              {{ item.eventDate | date:'dd MMM yyyy' }}
-            </span>
-
-            <h3>
-              {{ item.title }}
-            </h3>
-
-            <p>
-              {{ item.description }}
-            </p>
-
-
-            <a
-              *ngIf="item.youtubeVideoId"
-              [href]="getYoutubeUrl(item.youtubeVideoId)"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="watch-button">
-
-              <i class="pi pi-play"></i>
-
-              Recording देखें
-
-              <i class="pi pi-arrow-right"></i>
-
-            </a>
-
-          </div>
-
-        </article>
-
-      </div>
-
-    </div>
-
-
-    <div
-      *ngIf="!recentlyEnded.length"
-      class="no-recordings">
-
-      <i class="pi pi-video"></i>
-
-      <h3>
-        अभी कोई ended Live recording उपलब्ध नहीं है
-      </h3>
-
-      <p>
-        Live कार्यक्रम समाप्त होने के बाद
-        उपलब्ध recordings यहाँ दिखाई जाएँगी।
-      </p>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     DARSHAN ARCHIVE
-===================================================== -->
-
-<section class="archive-section">
-
-  <div class="container">
-
-    <div class="section-heading">
-
-      <span class="section-kicker">
-        DARSHAN ARCHIVE
-      </span>
-
-      <h2>
-        पिछले वर्षों के
-        <span>पावन दर्शन</span>
-      </h2>
-
-      <p>
-        राँची रेलवे स्टेशन दुर्गा पूजा के पिछले वर्षों
-        के महत्वपूर्ण Live कार्यक्रम और recordings।
-      </p>
-
-    </div>
-
-
-    <!-- YEARS -->
-
-    <div
-      class="year-filter"
-      *ngIf="archiveYears.length">
-
-      <button
-        type="button"
-        *ngFor="let year of archiveYears"
-        [class.active]="selectedYear === year"
-        (click)="selectYear(year)">
-
-        {{ year }}
-
-      </button>
-
-    </div>
-
-
-    <!-- HISTORY -->
-
-    <div
-      class="row g-4"
-      *ngIf="filteredHistory.length">
-
-
-      <div
-        class="col-md-6 col-lg-4"
-        *ngFor="
-          let item of filteredHistory;
-          trackBy: trackById
-        ">
-
-
-        <article class="archive-card">
-
-
-          <div class="archive-image">
-
-            <img
-              [src]="item.thumbnailUrl"
-              [alt]="item.title">
-
-
-            <span>
-              {{ item.year }}
-            </span>
-
-          </div>
-
-
-          <div class="archive-content">
-
-            <small>
-              {{ item.dayName || 'PUJA PROGRAMME' }}
-              ·
-              {{ item.eventDate | date:'dd MMM yyyy' }}
-            </small>
-
-            <h3>
-              {{ item.title }}
-            </h3>
-
-            <p>
-              {{ item.description }}
-            </p>
-
-
-            <a
-              [href]="getYoutubeUrl(item.youtubeVideoId)"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="watch-button">
-
-              <i class="pi pi-play"></i>
-
-              दर्शन देखें
-
-              <i class="pi pi-arrow-right"></i>
-
-            </a>
-
-          </div>
-
-        </article>
-
-      </div>
-
-    </div>
-
-
-    <div
-      *ngIf="!filteredHistory.length"
-      class="no-recordings">
-
-      <i class="pi pi-folder-open"></i>
-
-      <h3>
-        इस वर्ष की recordings उपलब्ध नहीं हैं
-      </h3>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     WHAT YOU CAN WATCH
-===================================================== -->
-
-<section class="watch-section">
-
-  <div class="container">
-
-    <div class="section-heading text-center">
-
-      <span class="section-kicker">
-        EXPERIENCE THE FESTIVAL
-      </span>
-
-      <h2>
-        Live में
-        <span>क्या देखें?</span>
-      </h2>
-
-      <p>
-        पूजा उत्सव के महत्वपूर्ण moments
-        से घर बैठे जुड़िए।
-      </p>
-
-    </div>
-
-
-    <div class="row g-4">
-
-
-      <div class="col-md-6 col-lg-3">
-
-        <div class="watch-card">
-
-          <div class="watch-icon">
-            <i class="pi pi-sun"></i>
-          </div>
-
-          <span>
-            PUJA
-          </span>
-
-          <h3>
-            पूजा
-          </h3>
-
-          <p>
-            विशेष पूजा एवं धार्मिक अनुष्ठानों
-            के पावन moments।
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="col-md-6 col-lg-3">
-
-        <div class="watch-card">
-
-          <div class="watch-icon">
-            <i class="pi pi-star"></i>
-          </div>
-
-          <span>
-            AARTI
-          </span>
-
-          <h3>
-            आरती
-          </h3>
-
-          <p>
-            प्रातः एवं संध्या आरती के दौरान
-            Live Darshan।
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="col-md-6 col-lg-3">
-
-        <div class="watch-card">
-
-          <div class="watch-icon">
-            <i class="pi pi-heart"></i>
-          </div>
-
-          <span>
-            SPECIAL RITUALS
-          </span>
-
-          <h3>
-            विशेष अनुष्ठान
-          </h3>
-
-          <p>
-            संधि पूजा और अन्य विशेष
-            धार्मिक कार्यक्रम।
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="col-md-6 col-lg-3">
-
-        <div class="watch-card">
-
-          <div class="watch-icon">
-            <i class="pi pi-send"></i>
-          </div>
-
-          <span>
-            VISARJAN
-          </span>
-
-          <h3>
-            विसर्जन
-          </h3>
-
-          <p>
-            विजयादशमी एवं विसर्जन के
-            महत्वपूर्ण moments।
-          </p>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     HOW IT WORKS
-===================================================== -->
-
-<section class="process-section">
-
-  <div class="container">
-
-    <div class="process-heading text-center">
-
-      <span class="section-kicker">
-        HOW IT WORKS
-      </span>
-
-      <h2>
-        दर्शन की
-        <span>सरल यात्रा</span>
-      </h2>
-
-      <p>
-        कुछ आसान steps में पूजा स्थल से जुड़िए।
-      </p>
-
-    </div>
-
-
-    <div class="process-wrapper">
-
-
-      <div class="process-item">
-
-        <div class="process-number">
-          01
-        </div>
-
-        <div class="process-icon">
-          <i class="pi pi-video"></i>
-        </div>
-
-        <h3>
-          Live शुरू
-        </h3>
-
-        <p>
-          निर्धारित कार्यक्रम के समय
-          Live Darshan शुरू होगा।
-        </p>
-
-      </div>
-
-
-      <div class="process-line"></div>
-
-
-      <div class="process-item">
-
-        <div class="process-number">
-          02
-        </div>
-
-        <div class="process-icon">
-          <i class="pi pi-eye"></i>
-        </div>
-
-        <h3>
-          माँ का दर्शन
-        </h3>
-
-        <p>
-          घर बैठे पूजा और आरती के
-          पावन दर्शन करें।
-        </p>
-
-      </div>
-
-
-      <div class="process-line"></div>
-
-
-      <div class="process-item">
-
-        <div class="process-number">
-          03
-        </div>
-
-        <div class="process-icon">
-          <i class="pi pi-heart"></i>
-        </div>
-
-        <h3>
-          भक्ति से जुड़ें
-        </h3>
-
-        <p>
-          परिवार के साथ इस पावन उत्सव
-          का हिस्सा बनें।
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     PRASAD CONNECTION
-===================================================== -->
-
-<section class="prasad-section">
-
-  <div class="container">
-
-    <div class="prasad-banner">
-
-      <div class="prasad-icon">
-        <i class="pi pi-gift"></i>
-      </div>
-
-
-      <div class="prasad-content">
-
-        <span>
-          PRASAD SEVA
+        <span class="section-kicker">
+          RECENTLY ENDED
         </span>
 
         <h2>
-          दर्शन के बाद माँ का प्रसाद भी प्राप्त करें
+          हाल के <span>Live Darshan</span>
         </h2>
-
-        <p>
-          उपलब्ध प्रसाद एवं महाभोग के विकल्प देखें।
-          परिसर में प्राप्त करें या उपलब्ध होने पर
-          Home Delivery चुनें।
-        </p>
 
       </div>
 
+      <p>
+        पिछले Live Darshan की recordings देखें।
+      </p>
 
-      <a
-        routerLink="/prasad"
-        class="prasad-button">
+    </div>
 
-        प्रसाद देखें
 
-        <i class="pi pi-arrow-right"></i>
+    <div class="recordings-grid">
 
-      </a>
+      <article
+        class="recording-card"
+        *ngFor="
+          let item of recentlyEnded;
+          trackBy: trackById
+        "
+        (click)="openRecording(item)">
+
+
+        <!-- IMAGE -->
+
+        <div class="recording-image">
+
+          <img
+            [src]="item.thumbnailUrl"
+            [alt]="item.title">
+
+
+          <!-- PLAY -->
+
+          <div class="play-icon">
+
+            <i class="pi pi-play"></i>
+
+          </div>
+
+
+          <!-- ENDED -->
+
+          <span class="ended-badge">
+
+            <i class="pi pi-check-circle"></i>
+
+            LIVE ENDED
+
+          </span>
+
+        </div>
+
+
+        <!-- CONTENT -->
+
+        <div class="recording-body">
+
+
+          <div class="recording-date">
+
+            <i class="pi pi-calendar"></i>
+
+            {{ item.eventDate | date:'dd MMM yyyy' }}
+
+          </div>
+
+
+          <h3>
+            {{ item.title }}
+          </h3>
+
+
+          <p>
+            {{ item.description }}
+          </p>
+
+
+          <button
+            type="button"
+            class="watch-button"
+            (click)="openRecording(item); $event.stopPropagation()">
+
+            <i class="pi pi-play-circle"></i>
+
+            Recording देखें
+
+            <i class="pi pi-arrow-right"></i>
+
+          </button>
+
+        </div>
+
+      </article>
 
     </div>
 
@@ -1039,9 +449,75 @@
 </section>
 
 
-<!-- =====================================================
+
+<!-- =========================================================
+     VIDEO MODAL
+========================================================= -->
+
+<div
+  class="video-modal"
+  *ngIf="selectedRecording && recordingUrl"
+  (click)="closeRecording()">
+
+
+  <div
+    class="video-modal-content"
+    (click)="$event.stopPropagation()">
+
+
+    <!-- CLOSE -->
+
+    <button
+      type="button"
+      class="video-close"
+      (click)="closeRecording()">
+
+      <i class="pi pi-times"></i>
+
+    </button>
+
+
+    <!-- PLAYER -->
+
+    <div class="video-modal-player">
+
+      <iframe
+        [src]="recordingUrl"
+        [title]="selectedRecording.title"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+      </iframe>
+
+    </div>
+
+
+    <!-- INFO -->
+
+    <div class="video-modal-info">
+
+      <span>
+        LIVE ENDED
+      </span>
+
+      <h3>
+        {{ selectedRecording.title }}
+      </h3>
+
+      <p>
+        {{ selectedRecording.description }}
+      </p>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<!-- =========================================================
      VENUE
-===================================================== -->
+========================================================= -->
 
 <section class="venue-section">
 
@@ -1049,9 +525,17 @@
 
     <div class="venue-card">
 
-      <div>
 
-        <span class="section-kicker">
+      <div class="venue-icon">
+
+        <i class="pi pi-map-marker"></i>
+
+      </div>
+
+
+      <div class="venue-content">
+
+        <span>
           LIVE VENUE
         </span>
 
@@ -1070,107 +554,15 @@
         href="https://www.google.com/maps/search/?api=1&query=Ranchi+Railway+Station"
         target="_blank"
         rel="noopener noreferrer"
-        class="venue-button">
+        class="maps-button">
 
-        <i class="pi pi-map-marker"></i>
+        <i class="pi pi-directions"></i>
 
-        Google Maps पर देखें
+        Google Maps
 
         <i class="pi pi-external-link"></i>
 
       </a>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     DEVOTEE MESSAGE
-===================================================== -->
-
-<section class="devotee-section">
-
-  <div class="container">
-
-    <div class="devotee-card">
-
-      <div class="quote-icon">
-        <i class="pi pi-quote-left"></i>
-      </div>
-
-      <blockquote>
-
-        जहाँ भी हों, माँ दुर्गा के पावन दर्शन
-        और पूजा के इस उत्सव से जुड़े रहें।
-
-      </blockquote>
-
-      <span>
-        Ranchi Railway Station Durga Puja Committee
-      </span>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     FINAL CTA
-===================================================== -->
-
-<section class="darshan-cta">
-
-  <div class="container">
-
-    <div class="cta-content">
-
-      <div>
-
-        <span>
-          RANCHI RAILWAY STATION DURGA PUJA 2026
-        </span>
-
-        <h2>
-          माँ दुर्गा के हर पावन कार्यक्रम से जुड़े रहें।
-        </h2>
-
-        <p>
-          पूजा कार्यक्रम देखें, Live Darshan से जुड़ें
-          और माँ का प्रसाद प्राप्त करें।
-        </p>
-
-      </div>
-
-
-      <div class="cta-buttons">
-
-        <a
-          routerLink="/puja-schedule"
-          class="btn btn-light">
-
-          <i class="pi pi-calendar"></i>
-
-          Puja Schedule
-
-        </a>
-
-
-        <a
-          routerLink="/prasad"
-          class="btn btn-gold">
-
-          <i class="pi pi-gift"></i>
-
-          Prasad
-
-        </a>
-
-      </div>
 
     </div>
 

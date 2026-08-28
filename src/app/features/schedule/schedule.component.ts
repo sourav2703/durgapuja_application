@@ -5,7 +5,9 @@ import { PujaEvent } from '../../core/models/models';
 
 @Component({
   selector: 'app-schedule',
+
   templateUrl: './schedule.component.html',
+
   styleUrls: ['./schedule.component.css']
 })
 export class ScheduleComponent implements OnInit {
@@ -14,58 +16,50 @@ export class ScheduleComponent implements OnInit {
 
   error = false;
 
-  grouped: {
-    [key: string]: PujaEvent[];
-  } = {};
+  grouped: { [key: string]: PujaEvent[] } = {};
 
   days: string[] = [];
+
 
   constructor(
     private data: DemoDataService
   ) {}
 
+
   ngOnInit(): void {
-
-    this.loadSchedule();
-
-  }
-
-  private loadSchedule(): void {
-
-    this.loading = true;
-
-    this.error = false;
 
     this.data.getPujaSchedule().subscribe({
 
       next: (events: PujaEvent[]) => {
 
-        this.grouped = {};
+        this.grouped = events.reduce(
 
-        events.forEach((event: PujaEvent) => {
+          (
+            result: { [key: string]: PujaEvent[] },
+            event: PujaEvent
+          ) => {
 
-          if (!this.grouped[event.dayName]) {
+            if (!result[event.dayName]) {
+              result[event.dayName] = [];
+            }
 
-            this.grouped[event.dayName] = [];
+            result[event.dayName].push(event);
 
-          }
+            return result;
 
-          this.grouped[event.dayName].push(event);
+          },
 
-        });
+          {}
+        );
+
 
         this.days = Object.keys(this.grouped);
 
         this.loading = false;
-
       },
 
-      error: (error) => {
 
-        console.error(
-          'Unable to load Puja Schedule',
-          error
-        );
+      error: () => {
 
         this.error = true;
 
@@ -74,6 +68,43 @@ export class ScheduleComponent implements OnInit {
       }
 
     });
+
+  }
+
+
+  getDaySubtitle(index: number): string {
+
+    if (index === 0) {
+      return 'पूजा आरंभ';
+    }
+
+    if (index === this.days.length - 1) {
+      return 'विजयादशमी एवं समापन';
+    }
+
+    return 'शारदीय नवरात्रि उत्सव';
+  }
+
+
+  isAarti(event: PujaEvent): boolean {
+
+    return event.eventName
+      .toLowerCase()
+      .includes('आरती');
+
+  }
+
+
+  isSpecial(event: PujaEvent): boolean {
+
+    const name = event.eventName.toLowerCase();
+
+    return (
+      name.includes('संधि') ||
+      name.includes('महानवमी') ||
+      name.includes('नवपत्रिका') ||
+      name.includes('बेल')
+    );
 
   }
 

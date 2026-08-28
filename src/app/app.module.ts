@@ -36,6 +36,7 @@ import { PrasadComponent } from './features/prasad/prasad.component';
 
 import { BookingComponent } from './features/booking/booking.component';
 import { ConfirmationComponent } from './features/booking/confirmation.component';
+import { BookingRedirectComponent } from './features/booking/booking-redirect.component';
 
 
 // =====================================================
@@ -59,6 +60,8 @@ import { InfoComponent } from './features/info/info.component';
 
 import { AdminComponent } from './features/admin/admin.component';
 import { AdminLoginComponent } from './features/admin/admin-login.component';
+import { AccessComponent } from './features/access/access.component';
+import { QuickDarshanComponent } from './features/quick-darshan/quick-darshan.component';
 
 
 // =====================================================
@@ -66,6 +69,7 @@ import { AdminLoginComponent } from './features/admin/admin-login.component';
 // =====================================================
 
 import { ApiPreparationInterceptor } from './core/interceptors/api-preparation.interceptor';
+import { SafeUrlPipe } from './core/pipes/safe-url.pipe';
 
 
 @NgModule({
@@ -74,7 +78,7 @@ import { ApiPreparationInterceptor } from './core/interceptors/api-preparation.i
 
     // App
     AppComponent,
-
+SafeUrlPipe,
 
     // Layout
     HeaderComponent,
@@ -94,6 +98,7 @@ import { ApiPreparationInterceptor } from './core/interceptors/api-preparation.i
     PrasadComponent,
     BookingComponent,
     ConfirmationComponent,
+    BookingRedirectComponent,
 
 
     // Media
@@ -107,7 +112,9 @@ import { ApiPreparationInterceptor } from './core/interceptors/api-preparation.i
 
     // Admin
     AdminComponent,
-    AdminLoginComponent
+    AdminLoginComponent,
+    AccessComponent,
+    QuickDarshanComponent
 
   ],
 

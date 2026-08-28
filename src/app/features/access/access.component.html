@@ -1,0 +1,29 @@
+<section class="access-page">
+  <div class="access-card">
+    <div class="access-emblem"><i class="pi pi-shield"></i></div>
+    <span class="access-kicker">SECURE DEVOTEE ACCESS</span>
+    <h1>{{ title }} के लिए सत्यापन</h1>
+    <p>{{ summary }}</p>
+
+    <form [formGroup]="form" (ngSubmit)="verify()">
+      <ng-container *ngIf="!codeSent; else verifyStep">
+        <label for="contact">मोबाइल नंबर या Gmail</label>
+        <input id="contact" class="form-control" formControlName="contact" placeholder="10-digit mobile number or Gmail address" autocomplete="email">
+        <small class="field-error" *ngIf="form.get('contact')?.touched && form.get('contact')?.invalid">मोबाइल नंबर या Gmail दर्ज करें।</small>
+        <button type="button" class="access-primary" (click)="sendCode()">Verification code भेजें <i class="pi pi-arrow-right"></i></button>
+      </ng-container>
+
+      <ng-template #verifyStep>
+        <div class="sent-message"><i class="pi pi-check-circle"></i> Code भेज दिया गया है: {{ form.value.contact }}</div>
+        <label for="code">6-digit verification code</label>
+        <input id="code" class="form-control code-input" formControlName="code" inputmode="numeric" maxlength="6" placeholder="123456">
+        <small class="demo-note">Frontend demo code: <b>123456</b></small>
+        <p class="field-error" *ngIf="error">{{ error }}</p>
+        <button type="submit" class="access-primary" [disabled]="verifying">{{ verifying ? 'Verifying…' : 'Verify & Continue' }} <i class="pi pi-arrow-right"></i></button>
+        <button type="button" class="change-contact" (click)="codeSent=false">Change mobile / Gmail</button>
+      </ng-template>
+    </form>
+
+    <p class="access-privacy"><i class="pi pi-lock"></i> आपका संपर्क विवरण केवल booking और सेवा संबंधी सूचना के लिए उपयोग होगा।</p>
+  </div>
+</section>

@@ -1,0 +1,816 @@
+/* =========================================================
+   CONFIRMATION PAGE
+========================================================= */
+
+.confirmation-page {
+  min-height: calc(100vh - 64px);
+
+  padding: 32px 0 40px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #fffaf5 0%,
+      #fff4e8 100%
+    );
+}
+
+
+/* =========================================================
+   MAIN CARD
+========================================================= */
+
+.confirmation-card {
+  width: 100%;
+  max-width: 650px;
+
+  margin: 0 auto;
+
+  padding: 30px;
+
+  background: #ffffff;
+
+  border: 1px solid #f0dfcf;
+
+  border-radius: 14px;
+
+  box-shadow:
+    0 10px 35px rgba(110, 65, 25, 0.08);
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   SUCCESS ICON
+========================================================= */
+
+.success-check {
+  width: 58px;
+  height: 58px;
+
+  margin: 0 auto 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f2a43a,
+      #dc7115
+    );
+
+  border-radius: 50%;
+
+  font-size: 24px;
+
+  box-shadow:
+    0 7px 18px rgba(220, 113, 21, 0.20);
+}
+
+
+/* =========================================================
+   KICKER
+========================================================= */
+
+.section-kicker {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: #d87316;
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 1px;
+
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.confirmation-card h1 {
+  margin: 0;
+
+  color: #512817;
+
+  font-size: 27px;
+
+  font-weight: 800;
+
+  line-height: 1.3;
+}
+
+
+.confirmation-message {
+  max-width: 500px;
+
+  margin: 8px auto 16px;
+
+  color: #7c6a5c;
+
+  font-size: 13px;
+
+  line-height: 1.6;
+}
+
+
+/* =========================================================
+   BOOKING REFERENCE
+========================================================= */
+
+.reference-label {
+  margin-bottom: 5px;
+
+  color: #927d6c;
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  letter-spacing: .7px;
+}
+
+
+.booking-reference {
+  display: inline-block;
+
+  padding: 8px 17px;
+
+  color: #b65e11;
+
+  background: #fff4e7;
+
+  border: 1px dashed #e4b77f;
+
+  border-radius: 6px;
+
+  font-size: 13px;
+
+  font-weight: 800;
+
+  letter-spacing: .5px;
+}
+
+
+/* =========================================================
+   DETAILS
+========================================================= */
+
+.confirmation-details {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 1px;
+
+  margin-top: 19px;
+
+  overflow: hidden;
+
+  background: #eadfd6;
+
+  border: 1px solid #eadfd6;
+
+  border-radius: 9px;
+}
+
+
+.detail-item {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 3px;
+
+  padding: 12px;
+
+  background: #fffaf7;
+
+  text-align: left;
+}
+
+
+.detail-item span {
+  color: #927e6d;
+
+  font-size: 10px;
+}
+
+
+.detail-item strong {
+  color: #4f2917;
+
+  font-size: 13px;
+
+  font-weight: 800;
+}
+
+
+/* =========================================================
+   QR SECTION
+========================================================= */
+
+.qr-demo {
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  margin-top: 17px;
+
+  padding: 13px;
+
+  background: #fff8ef;
+
+  border: 1px solid #efddc8;
+
+  border-radius: 9px;
+
+  text-align: left;
+}
+
+
+/* =========================================================
+   DEMO QR
+========================================================= */
+
+.fake-qr {
+  width: 67px;
+  height: 67px;
+
+  flex-shrink: 0;
+
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  align-items: center;
+  justify-items: center;
+
+  padding: 5px;
+
+  color: #3d2114;
+
+  background: #ffffff;
+
+  border: 5px solid #3d2114;
+
+  font-size: 17px;
+
+  line-height: 1;
+}
+
+
+.fake-qr span {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* =========================================================
+   QR CONTENT
+========================================================= */
+
+.qr-content h5 {
+  margin: 0 0 4px;
+
+  color: #542817;
+
+  font-size: 14px;
+
+  font-weight: 800;
+}
+
+
+.qr-content p {
+  margin: 0;
+
+  color: #7e6c5e;
+
+  font-size: 11px;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   QR FLOW
+========================================================= */
+
+.qr-flow {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  margin-top: 12px;
+
+  color: #806e60;
+
+  font-size: 10px;
+
+  font-weight: 700;
+}
+
+
+.qr-flow i {
+  color: #d97718;
+
+  font-size: 10px;
+}
+
+
+/* =========================================================
+   SPECIAL ENTRY MAP
+========================================================= */
+
+.special-entry-map {
+  margin-top: 21px;
+
+  padding: 15px;
+
+  background: #fff8ef;
+
+  border: 1px solid #efd3b2;
+
+  border-radius: 11px;
+
+  text-align: left;
+}
+
+
+/* =========================================================
+   MAP HEADER
+========================================================= */
+
+.map-header {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  margin-bottom: 11px;
+}
+
+
+.map-kicker {
+  display: block;
+
+  margin-bottom: 3px;
+
+  color: #d87214;
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  letter-spacing: .8px;
+}
+
+
+.map-header h3 {
+  margin: 0;
+
+  color: #542817;
+
+  font-size: 17px;
+
+  font-weight: 800;
+}
+
+
+.map-header p {
+  margin: 4px 0 0;
+
+  color: #806e60;
+
+  font-size: 11px;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   MAP ICON
+========================================================= */
+
+.map-icon {
+  width: 40px;
+  height: 40px;
+
+  min-width: 40px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: #df7516;
+
+  background: #ffead2;
+
+  border-radius: 50%;
+
+  font-size: 18px;
+}
+
+
+/* =========================================================
+   MAP CONTAINER
+========================================================= */
+
+.map-container {
+  position: relative;
+
+  width: 100%;
+  height: 300px;
+
+  overflow: hidden;
+
+  background: #eeeeee;
+
+  border: 1px solid #e3cfba;
+
+  border-radius: 8px;
+}
+
+
+.map-container iframe {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  border: 0;
+}
+
+
+/* =========================================================
+   GOOGLE MAP BUTTON
+========================================================= */
+
+.map-open-btn {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  width: 100%;
+
+  margin-top: 9px;
+
+  padding: 10px 14px;
+
+  color: #ffffff !important;
+
+  background:
+    linear-gradient(
+      135deg,
+      #e48622,
+      #d2680d
+    );
+
+  border: 1px solid #d2680d;
+
+  border-radius: 7px;
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  text-decoration: none !important;
+
+  transition:
+    transform .2s ease,
+    box-shadow .2s ease;
+}
+
+
+.map-open-btn:hover {
+  color: #ffffff !important;
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 5px 13px rgba(210, 104, 13, 0.20);
+}
+
+
+/* =========================================================
+   MAP NOTE
+========================================================= */
+
+.map-note {
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 7px;
+
+  margin-top: 9px;
+
+  padding: 8px 9px;
+
+  color: #7f6d5e;
+
+  background: #ffffff;
+
+  border-radius: 6px;
+
+  font-size: 10px;
+
+  line-height: 1.5;
+}
+
+
+.map-note i {
+  margin-top: 2px;
+
+  flex-shrink: 0;
+
+  color: #dc7517;
+}
+
+
+/* =========================================================
+   PRASAD COLLECTION INFO
+========================================================= */
+
+.collection-info {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  margin-top: 19px;
+
+  padding: 13px;
+
+  background: #fff8ef;
+
+  border: 1px solid #efdfce;
+
+  border-radius: 9px;
+
+  text-align: left;
+}
+
+
+.collection-icon {
+  width: 38px;
+  height: 38px;
+
+  min-width: 38px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: #db7418;
+
+  background: #ffead3;
+
+  border-radius: 50%;
+}
+
+
+.collection-info strong {
+  display: block;
+
+  color: #542817;
+
+  font-size: 13px;
+}
+
+
+.collection-info p {
+  margin: 3px 0 0;
+
+  color: #7f6c5d;
+
+  font-size: 10px;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   BACK HOME
+========================================================= */
+
+.confirmation-home {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  margin-top: 20px;
+
+  padding: 10px 18px;
+
+  color: #ffffff !important;
+
+  background: #8b1e2d;
+
+  border: 1px solid #8b1e2d;
+
+  border-radius: 6px;
+
+  font-size: 12px;
+
+  font-weight: 800;
+
+  text-decoration: none !important;
+
+  transition: .2s ease;
+}
+
+
+.confirmation-home:hover {
+  color: #ffffff !important;
+
+  background: #741724;
+
+  border-color: #741724;
+}
+
+
+/* =========================================================
+   MISSING BOOKING
+========================================================= */
+
+.missing-card {
+  padding: 48px 30px;
+}
+
+
+.missing-icon {
+  width: 56px;
+  height: 56px;
+
+  margin: 0 auto 13px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: #d87617;
+
+  background: #fff0df;
+
+  border-radius: 50%;
+
+  font-size: 22px;
+}
+
+
+.missing-card h2 {
+  margin: 0 0 7px;
+
+  color: #542817;
+
+  font-size: 22px;
+}
+
+
+.missing-card p {
+  margin: 0;
+
+  color: #806d5e;
+
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 576px) {
+
+  .confirmation-page {
+    padding: 20px 10px 30px;
+  }
+
+
+  .confirmation-card {
+    padding: 21px 13px;
+
+    border-radius: 11px;
+  }
+
+
+  .confirmation-card h1 {
+    font-size: 22px;
+  }
+
+
+  .confirmation-message {
+    font-size: 12px;
+  }
+
+
+  .confirmation-details {
+    grid-template-columns: 1fr 1fr;
+  }
+
+
+  .detail-item {
+    padding: 10px;
+  }
+
+
+  .qr-demo {
+    gap: 10px;
+
+    padding: 11px;
+  }
+
+
+  .fake-qr {
+    width: 58px;
+    height: 58px;
+
+    border-width: 4px;
+
+    font-size: 14px;
+  }
+
+
+  .qr-content h5 {
+    font-size: 12px;
+  }
+
+
+  .qr-content p {
+    font-size: 10px;
+  }
+
+
+  .qr-flow {
+    gap: 6px;
+
+    font-size: 9px;
+  }
+
+
+  .special-entry-map {
+    padding: 11px;
+  }
+
+
+  .map-header h3 {
+    font-size: 15px;
+  }
+
+
+  .map-header p {
+    font-size: 10px;
+  }
+
+
+  .map-container {
+    height: 250px;
+  }
+
+
+  .map-open-btn {
+    font-size: 10px;
+
+    padding: 10px;
+  }
+
+
+  .collection-info {
+    align-items: flex-start;
+  }
+
+}

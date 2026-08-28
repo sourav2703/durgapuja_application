@@ -1,0 +1,802 @@
+/* =========================================================
+   PRASAD PAGE
+   LIGHT BHAGWA / SAFFRON THEME
+========================================================= */
+
+:host {
+  display: block;
+
+  background: #fffcf8;
+
+  color: #58301d;
+}
+
+
+/* =========================================================
+   SECTION
+========================================================= */
+
+.section-pad {
+  padding: 18px 0 20px;
+
+  background: #fffcf8;
+}
+
+
+/* =========================================================
+   PRODUCT GRID
+========================================================= */
+
+.prasad-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, 1fr);
+
+  gap: 12px;
+}
+
+
+/* =========================================================
+   PRODUCT CARD
+========================================================= */
+
+.prasad-card {
+  display: flex;
+
+  min-height: 230px;
+
+  overflow: hidden;
+
+  background: #fff;
+
+  border: 1px solid #eadfd4;
+
+  border-radius: 9px;
+
+  box-shadow:
+    0 4px 16px rgba(160, 105, 60, .06);
+
+  transition:
+    transform .2s ease,
+    box-shadow .2s ease,
+    border-color .2s ease;
+}
+
+.prasad-card:hover {
+  transform: translateY(-3px);
+
+  border-color: #efc58f;
+
+  box-shadow:
+    0 9px 25px rgba(160, 105, 60, .10);
+}
+
+
+/* =========================================================
+   IMAGE
+========================================================= */
+
+.prasad-image {
+  position: relative;
+
+  width: 38%;
+
+  min-width: 175px;
+
+  overflow: hidden;
+
+  background: #fff3e3;
+}
+
+.prasad-image img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  transition: transform .3s ease;
+}
+
+.prasad-card:hover .prasad-image img {
+  transform: scale(1.03);
+}
+
+
+.image-label {
+  position: absolute;
+
+  left: 8px;
+  bottom: 8px;
+
+  padding: 4px 7px;
+
+  color: #fff;
+
+  background: rgba(196, 100, 20, .88);
+
+  border-radius: 4px;
+
+  font-size: 6px;
+
+  font-weight: 800;
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.prasad-content {
+  flex: 1;
+
+  min-width: 0;
+
+  padding: 13px 14px;
+}
+
+
+/* =========================================================
+   AVAILABILITY
+========================================================= */
+
+.availability {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 4px;
+
+  padding: 4px 7px;
+
+  color: #39824a;
+
+  background: #eef8ef;
+
+  border: 1px solid #d6ead9;
+
+  border-radius: 20px;
+
+  font-size: 6px;
+
+  font-weight: 800;
+}
+
+.availability i {
+  font-size: 7px;
+}
+
+.availability.low {
+  color: #c56b16;
+
+  background: #fff4e1;
+
+  border-color: #f0d09f;
+}
+
+.availability.full {
+  color: #b94d3e;
+
+  background: #fff0ed;
+
+  border-color: #f0d0cb;
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.prasad-content h2 {
+  margin: 7px 0 4px;
+
+  color: #58301d;
+
+  font-size: 18px;
+
+  font-weight: 900;
+
+  line-height: 1.15;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.description {
+  margin: 0 0 7px;
+
+  color: #7c6757;
+
+  font-size: 8px;
+
+  line-height: 1.45;
+}
+
+
+/* =========================================================
+   PRICE
+========================================================= */
+
+.price-row {
+  display: flex;
+
+  align-items: baseline;
+
+  gap: 6px;
+
+  margin-bottom: 7px;
+}
+
+.price {
+  color: #df7418;
+
+  font-size: 20px;
+
+  font-weight: 900;
+
+  line-height: 1;
+}
+
+.per-booking {
+  color: #9a8372;
+
+  font-size: 6px;
+}
+
+
+/* =========================================================
+   CAPACITY
+========================================================= */
+
+.capacity-box {
+  padding: 7px 8px;
+
+  background: #fffaf5;
+
+  border: 1px solid #f0e1d3;
+
+  border-radius: 6px;
+}
+
+.capacity-top {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 8px;
+
+  margin-bottom: 5px;
+}
+
+.capacity-top span {
+  display: flex;
+
+  align-items: center;
+
+  gap: 4px;
+
+  color: #806c5d;
+
+  font-size: 6px;
+}
+
+.capacity-top span i {
+  color: #df7418;
+
+  font-size: 7px;
+}
+
+.capacity-top strong {
+  color: #d67519;
+
+  font-size: 7px;
+
+  white-space: nowrap;
+}
+
+.capacity-top strong small {
+  color: #9b8473;
+
+  font-size: 6px;
+
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+.progress {
+  width: 100%;
+
+  height: 4px;
+
+  overflow: hidden;
+
+  background: #f0e3d8;
+
+  border-radius: 10px;
+}
+
+.progress > div {
+  height: 100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      #f1a32e,
+      #df7418
+    );
+
+  border-radius: 10px;
+
+  transition: width .3s ease;
+}
+
+
+/* =========================================================
+   DELIVERY OPTIONS
+========================================================= */
+
+.delivery-options {
+  display: flex;
+
+  align-items: center;
+
+  gap: 5px;
+
+  flex-wrap: wrap;
+
+  margin-top: 7px;
+}
+
+.delivery-options span {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 4px;
+
+  padding: 4px 6px;
+
+  color: #806a58;
+
+  background: #fff7ec;
+
+  border: 1px solid #efd9bb;
+
+  border-radius: 4px;
+
+  font-size: 6px;
+
+  font-weight: 700;
+}
+
+.delivery-options i {
+  color: #df7418;
+
+  font-size: 7px;
+}
+
+
+/* =========================================================
+   BOOK BUTTON
+========================================================= */
+
+.book-btn {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 6px;
+
+  width: 100%;
+
+  min-height: 34px;
+
+  margin-top: 8px;
+
+  padding: 7px 10px;
+
+  color: #fff !important;
+
+  background:
+    linear-gradient(
+      135deg,
+      #e78b25,
+      #d96d13
+    );
+
+  border-radius: 5px;
+
+  font-size: 8px;
+
+  font-weight: 900;
+
+  text-decoration: none !important;
+
+  transition: .2s ease;
+}
+
+.book-btn:hover {
+  color: #fff !important;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ed9a34,
+      #ca620d
+    );
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 5px 13px rgba(215, 108, 19, .16);
+}
+
+.book-btn i {
+  font-size: 7px;
+}
+
+
+/* =========================================================
+   DISABLED BUTTON
+========================================================= */
+
+.book-disabled {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+
+  min-height: 34px;
+
+  margin-top: 8px;
+
+  color: #a18d7d;
+
+  background: #f4efeb;
+
+  border-radius: 5px;
+
+  font-size: 8px;
+
+  font-weight: 800;
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.loading-box {
+  min-height: 130px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  color: #806c5d;
+
+  background: #fffaf5;
+
+  border: 1px solid #eadfd4;
+
+  border-radius: 8px;
+
+  font-size: 9px;
+}
+
+.loading-box i {
+  color: #df7418;
+
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   EMPTY
+========================================================= */
+
+.empty-box {
+  padding: 35px 15px;
+
+  text-align: center;
+
+  background: #fffaf5;
+
+  border: 1px solid #eadfd4;
+
+  border-radius: 8px;
+}
+
+.empty-box > i {
+  color: #e18a28;
+
+  font-size: 22px;
+}
+
+.empty-box h3 {
+  margin: 8px 0 4px;
+
+  color: #58301d;
+
+  font-size: 15px;
+}
+
+.empty-box p {
+  margin: 0;
+
+  color: #806c5d;
+
+  font-size: 8px;
+}
+
+
+/* =========================================================
+   HOME DELIVERY
+========================================================= */
+
+.delivery-section {
+  padding: 0 0 20px;
+
+  background: #fffaf4;
+}
+
+.delivery-card {
+  display: flex;
+
+  align-items: center;
+
+  gap: 11px;
+
+  padding: 12px 14px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fff3e3,
+      #fffaf4
+    );
+
+  border: 1px solid #efd5af;
+
+  border-radius: 8px;
+}
+
+
+/* =========================================================
+   DELIVERY ICON
+========================================================= */
+
+.delivery-icon {
+  width: 40px;
+  height: 40px;
+
+  min-width: 40px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: #df7418;
+
+  background: #ffe8c8;
+
+  border: 1px solid #f0c68e;
+
+  border-radius: 50%;
+}
+
+.delivery-icon i {
+  font-size: 14px;
+}
+
+
+/* =========================================================
+   DELIVERY CONTENT
+========================================================= */
+
+.delivery-content {
+  flex: 1;
+
+  min-width: 0;
+}
+
+.delivery-content > span {
+  display: block;
+
+  margin-bottom: 2px;
+
+  color: #d67519;
+
+  font-size: 6px;
+
+  font-weight: 900;
+
+  letter-spacing: 1px;
+}
+
+.delivery-content h2 {
+  margin: 0 0 2px;
+
+  color: #58301d;
+
+  font-size: 13px;
+
+  font-weight: 900;
+}
+
+.delivery-content p {
+  margin: 0;
+
+  color: #806c5d;
+
+  font-size: 7px;
+
+  line-height: 1.4;
+}
+
+
+/* =========================================================
+   DELIVERY BUTTON
+========================================================= */
+
+.delivery-btn {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 5px;
+
+  padding: 8px 10px;
+
+  color: #fff !important;
+
+  background: #df7418;
+
+  border-radius: 5px;
+
+  font-size: 7px;
+
+  font-weight: 900;
+
+  text-decoration: none !important;
+
+  white-space: nowrap;
+
+  transition: .2s ease;
+}
+
+.delivery-btn:hover {
+  color: #fff !important;
+
+  background: #ca620d;
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 991px) {
+
+  .prasad-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .prasad-card {
+    min-height: 210px;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 767px) {
+
+  .section-pad {
+    padding: 14px 0 16px;
+  }
+
+  .prasad-card {
+    flex-direction: column;
+
+    min-height: auto;
+  }
+
+  .prasad-image {
+    width: 100%;
+
+    min-width: 0;
+
+    height: 160px;
+  }
+
+  .prasad-content {
+    padding: 13px;
+  }
+
+  .prasad-content h2 {
+    font-size: 17px;
+  }
+
+  .price {
+    font-size: 18px;
+  }
+
+  .capacity-top {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 3px;
+  }
+
+  .delivery-card {
+    align-items: flex-start;
+
+    flex-wrap: wrap;
+  }
+
+  .delivery-content {
+    width: calc(100% - 52px);
+  }
+
+  .delivery-btn {
+    width: 100%;
+
+    margin-left: 51px;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+  .prasad-image {
+    height: 145px;
+  }
+
+  .prasad-content h2 {
+    font-size: 16px;
+  }
+
+  .description {
+    font-size: 8px;
+  }
+
+  .delivery-content h2 {
+    font-size: 12px;
+  }
+
+  .delivery-btn {
+    margin-left: 0;
+  }
+
+}

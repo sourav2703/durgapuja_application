@@ -2,6 +2,10 @@ export type CollectionMethod =
   'ON_PREMISES' |
   'HOME_DELIVERY';
 
+export type ProtectedExperience =
+  'BHOG' |
+  'QUICK_DARSHAN';
+
 
 export type BookingStatus =
   'PENDING' |
@@ -242,6 +246,46 @@ export interface Booking {
   status: BookingStatus;
 
   createdAt: string;
+
+  experience?: ProtectedExperience;
+
+  specialEntryMapUrl?: string;
+
+}
+
+
+export interface QuickDarshanConfig {
+
+  title: string;
+
+  description: string;
+
+  price: number;
+
+  availableDate: string;
+
+  timeSlots: string[];
+
+  capacity: number;
+
+  availableSlots: number;
+
+  specialEntryName: string;
+
+  specialEntryInstructions: string;
+
+  googleMapsUrl: string;
+
+}
+
+
+export interface AccessVerification {
+
+  experience: ProtectedExperience;
+
+  contact: string;
+
+  verifiedAt: string;
 
 }
 

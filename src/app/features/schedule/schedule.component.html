@@ -1,103 +1,46 @@
-<!-- =====================================================
-     PAGE HEADER
-===================================================== -->
-
-<app-page-header
-  eyebrow="Puja Calendar · 2026"
-  title="पूजा कार्यक्रम 2026"
-  subtitle="राँची रेलवे स्टेशन दुर्गा पूजा समिति के पूजा, आरती, अनुष्ठान और विशेष कार्यक्रमों की पूरी जानकारी।">
-</app-page-header>
 
 
-<!-- =====================================================
-     FESTIVAL OVERVIEW
-===================================================== -->
 
-<section class="festival-overview">
+<!-- =========================================================
+     MAIN SCHEDULE
+========================================================= -->
+
+<section class="schedule-section">
 
   <div class="container">
 
-    <div class="overview-card">
 
-      <div class="overview-main">
+    <!-- SECTION HEADING -->
+
+    <div class="schedule-heading">
+
+      <div>
 
         <span class="section-kicker">
-          RANCHI RAILWAY STATION DURGA PUJA
+          PUJA TIMELINE
         </span>
 
         <h2>
-          माँ दुर्गा के पावन उत्सव
-          <span>से जुड़िए</span>
+          पूजा के <span>प्रमुख कार्यक्रम</span>
         </h2>
 
-        <p>
-          षष्ठी से दशमी तक पूजा, आरती, विशेष अनुष्ठान,
-          दर्शन और प्रसाद सेवा से जुड़ी जानकारी एक ही जगह।
-        </p>
-
       </div>
 
-
-      <div class="overview-details">
-
-        <div class="overview-item">
-
-          <i class="pi pi-calendar"></i>
-
-          <div>
-            <span>FESTIVAL</span>
-            <strong>शारदीय दुर्गा पूजा 2026</strong>
-          </div>
-
-        </div>
-
-
-        <div class="overview-item">
-
-          <i class="pi pi-map-marker"></i>
-
-          <div>
-            <span>VENUE</span>
-            <strong>Ranchi Railway Station</strong>
-          </div>
-
-        </div>
-
-
-        <div class="overview-item">
-
-          <i class="pi pi-video"></i>
-
-          <div>
-            <span>DIGITAL</span>
-            <strong>Live Darshan Available</strong>
-          </div>
-
-        </div>
-
-      </div>
+      <p>
+        दिन और समय के अनुसार पूरा कार्यक्रम देखें।
+      </p>
 
     </div>
 
-  </div>
-
-</section>
 
 
-<!-- =====================================================
-     SCHEDULE
-===================================================== -->
-
-<section class="schedule-page">
-
-  <div class="container">
-
-
-    <!-- LOADING -->
+    <!-- =====================================================
+         LOADING
+    ====================================================== -->
 
     <div
       *ngIf="loading"
-      class="loading-box">
+      class="status-box">
 
       <i class="pi pi-spin pi-spinner"></i>
 
@@ -108,53 +51,58 @@
     </div>
 
 
-    <!-- ERROR -->
+
+    <!-- =====================================================
+         ERROR
+    ====================================================== -->
 
     <div
       *ngIf="!loading && error"
-      class="error-box">
+      class="status-box error">
 
-      <div class="error-icon">
-        <i class="pi pi-exclamation-triangle"></i>
-      </div>
+      <i class="pi pi-exclamation-triangle"></i>
 
       <div>
-
-        <h4>
+        <strong>
           कार्यक्रम लोड नहीं हो पाया
-        </h4>
+        </strong>
 
-        <p>
-          कृपया थोड़ी देर बाद दोबारा प्रयास करें।
-        </p>
-
+        <span>
+          कृपया थोड़ी देर बाद पुनः प्रयास करें।
+        </span>
       </div>
 
     </div>
 
 
-    <!-- EMPTY -->
+
+    <!-- =====================================================
+         EMPTY
+    ====================================================== -->
 
     <div
       *ngIf="!loading && !error && !days.length"
-      class="empty-box">
+      class="status-box">
 
       <i class="pi pi-calendar"></i>
 
-      <h4>
-        कोई कार्यक्रम उपलब्ध नहीं है
-      </h4>
+      <div>
+        <strong>
+          कोई कार्यक्रम उपलब्ध नहीं है
+        </strong>
 
-      <p>
-        पूजा कार्यक्रम जल्द ही अपडेट किया जाएगा।
-      </p>
+        <span>
+          पूजा कार्यक्रम जल्द ही अपडेट किया जाएगा।
+        </span>
+      </div>
 
     </div>
 
 
-    <!-- =================================================
+
+    <!-- =====================================================
          TIMELINE
-    ================================================== -->
+    ====================================================== -->
 
     <div
       *ngIf="!loading && !error && days.length"
@@ -163,48 +111,46 @@
 
       <!-- DAY -->
 
-      <div
-        class="timeline-day"
-        *ngFor="let day of days; let dayIndex = index">
+      <article
+        class="day-card"
+        *ngFor="let day of days; let i = index">
 
 
         <!-- DAY HEADER -->
 
-        <div class="timeline-day-header">
+        <div class="day-header">
 
           <div class="day-number">
-            {{ dayIndex + 1 }}
+            {{ i + 1 }}
           </div>
 
-          <div>
+          <div class="day-info">
 
-            <span class="day-label">
+            <span>
               PUJA DAY
             </span>
 
-            <h2>
+            <h3>
               {{ day }}
-            </h2>
+            </h3>
 
-            <span class="day-subtitle">
-
-              {{ dayIndex === 0 ? 'पूजा आरंभ' :
-                 dayIndex === days.length - 1 ? 'विजयादशमी एवं समापन' :
-                 'शारदीय नवरात्रि उत्सव' }}
-
-            </span>
+            <small>
+              {{ getDaySubtitle(i) }}
+            </small>
 
           </div>
 
         </div>
 
 
+
         <!-- EVENTS -->
 
-        <div class="timeline-events">
+        <div class="events">
 
-          <article
-            class="timeline-event"
+
+          <div
+            class="event"
             *ngFor="let event of grouped[day]">
 
 
@@ -212,35 +158,53 @@
 
             <div class="event-time">
 
-              <span>
+              <strong>
                 {{ event.startTime }}
-              </span>
+              </strong>
 
-              <div class="time-line"></div>
+              <small *ngIf="event.endTime">
+                {{ event.endTime }}
+              </small>
 
             </div>
 
 
-            <!-- CARD -->
+            <!-- EVENT DOT -->
 
-            <div class="event-card">
+            <div class="event-marker">
 
-              <div class="event-card-top">
+              <span></span>
 
-                <span class="event-type">
+            </div>
 
-                  <i class="pi pi-sparkles"></i>
 
-                  {{ event.eventName }}
+            <!-- EVENT CONTENT -->
+
+            <div class="event-content">
+
+              <div class="event-top">
+
+                <span class="event-category">
+
+                  <i
+                    class="pi"
+                    [ngClass]="
+                      isAarti(event)
+                        ? 'pi-sun'
+                        : 'pi-sparkles'
+                    ">
+                  </i>
+
+                  {{ isAarti(event) ? 'आरती' : 'पूजा' }}
 
                 </span>
 
 
                 <span
-                  class="event-status"
+                  class="event-active"
                   *ngIf="event.isActive">
 
-                  <i class="pi pi-check-circle"></i>
+                  <i class="pi pi-check"></i>
 
                   Scheduled
 
@@ -249,53 +213,39 @@
               </div>
 
 
-              <h3>
+              <h4>
                 {{ event.eventName }}
-              </h3>
+              </h4>
 
 
               <p>
-
                 {{
                   event.description ||
                   'राँची रेलवे स्टेशन दुर्गा पूजा समिति द्वारा आयोजित पावन कार्यक्रम।'
                 }}
-
               </p>
 
 
-              <div class="event-meta">
+              <div class="event-venue">
 
-                <div class="event-location">
+                <i class="pi pi-map-marker"></i>
 
-                  <i class="pi pi-map-marker"></i>
-
-                  <span>
-                    {{ event.venue || 'Ranchi Railway Station Durga Puja Pandal' }}
-                  </span>
-
-                </div>
-
-
-                <span
-                  class="live-badge"
-                  *ngIf="event.eventName.toLowerCase().includes('आरती')">
-
-                  <i class="pi pi-video"></i>
-
-                  Live
-
+                <span>
+                  {{
+                    event.venue ||
+                    'Ranchi Railway Station Durga Puja Pandal'
+                  }}
                 </span>
 
               </div>
 
             </div>
 
-          </article>
+          </div>
 
         </div>
 
-      </div>
+      </article>
 
     </div>
 
@@ -304,507 +254,35 @@
 </section>
 
 
-<!-- =====================================================
-     SPECIAL PUJA
-===================================================== -->
 
-<section class="special-section">
-
-  <div class="container">
-
-    <div class="section-heading">
-
-      <span class="section-kicker">
-        SPECIAL RITUALS
-      </span>
-
-      <h2>
-        विशेष पूजा एवं
-        <span>अनुष्ठान</span>
-      </h2>
-
-      <p>
-        नवरात्रि के प्रमुख धार्मिक कार्यक्रम और
-        विशेष अवसर।
-      </p>
-
-    </div>
+<!-- =========================================================
+     IMPORTANT RITUALS
+========================================================= -->
 
 
-    <div class="row g-4">
 
 
-      <!-- SHASHTHI -->
+<!-- =========================================================
+     VENUE
+========================================================= -->
 
-      <div class="col-md-6 col-lg-3">
-
-        <article class="special-card">
-
-          <div class="special-icon">
-            <i class="pi pi-sun"></i>
-          </div>
-
-          <span>
-            षष्ठी
-          </span>
-
-          <h3>
-            बेल वरण
-          </h3>
-
-          <p>
-            पूजा उत्सव के शुभारंभ से जुड़ा
-            विशेष धार्मिक अनुष्ठान।
-          </p>
-
-          <strong>
-            निर्धारित समय पर
-          </strong>
-
-        </article>
-
-      </div>
-
-
-      <!-- SAPTAMI -->
-
-      <div class="col-md-6 col-lg-3">
-
-        <article class="special-card">
-
-          <div class="special-icon">
-            <i class="pi pi-leaf"></i>
-          </div>
-
-          <span>
-            सप्तमी
-          </span>
-
-          <h3>
-            नवपत्रिका पूजा
-          </h3>
-
-          <p>
-            सप्तमी के अवसर पर विशेष पूजा
-            एवं धार्मिक अनुष्ठान।
-          </p>
-
-          <strong>
-            निर्धारित समय पर
-          </strong>
-
-        </article>
-
-      </div>
-
-
-      <!-- ASHTAMI -->
-
-      <div class="col-md-6 col-lg-3">
-
-        <article class="special-card featured">
-
-          <div class="special-icon">
-            <i class="pi pi-star"></i>
-          </div>
-
-          <span>
-            अष्टमी
-          </span>
-
-          <h3>
-            संधि पूजा
-          </h3>
-
-          <p>
-            अष्टमी और नवमी के संधिकाल में
-            विशेष पूजा का आयोजन।
-          </p>
-
-          <strong>
-            विशेष कार्यक्रम
-          </strong>
-
-        </article>
-
-      </div>
-
-
-      <!-- NAVAMI -->
-
-      <div class="col-md-6 col-lg-3">
-
-        <article class="special-card">
-
-          <div class="special-icon">
-            <i class="pi pi-heart-fill"></i>
-          </div>
-
-          <span>
-            नवमी
-          </span>
-
-          <h3>
-            महानवमी पूजा
-          </h3>
-
-          <p>
-            महानवमी के अवसर पर विशेष पूजा,
-            आरती और महाभोग।
-          </p>
-
-          <strong>
-            विशेष भोग सेवा
-          </strong>
-
-        </article>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     AARTI
-===================================================== -->
-
-<section class="aarti-section">
+<section class="venue-section">
 
   <div class="container">
 
-    <div class="aarti-wrapper">
+    <div class="venue-card">
 
-      <div>
+      <div class="venue-icon">
 
-        <span class="section-kicker">
-          AARTI TIMINGS
-        </span>
-
-        <h2>
-          आरती में
-          <span>शामिल हों</span>
-        </h2>
-
-        <p>
-          पूजा के निर्धारित समय पर माँ की आरती
-          में शामिल होकर इस पावन उत्सव का
-          हिस्सा बनें।
-        </p>
+        <i class="pi pi-map-marker"></i>
 
       </div>
 
 
-      <div class="aarti-list">
-
-        <div class="aarti-row">
-
-          <div class="aarti-icon">
-            <i class="pi pi-sun"></i>
-          </div>
-
-          <div>
-
-            <strong>
-              प्रातः आरती
-            </strong>
-
-            <span>
-              Morning Aarti
-            </span>
-
-          </div>
-
-          <time>
-            07:00 AM
-          </time>
-
-        </div>
-
-
-        <div class="aarti-row">
-
-          <div class="aarti-icon">
-            <i class="pi pi-moon"></i>
-          </div>
-
-          <div>
-
-            <strong>
-              संध्या आरती
-            </strong>
-
-            <span>
-              Evening Aarti
-            </span>
-
-          </div>
-
-          <time>
-            07:00 PM
-          </time>
-
-        </div>
-
-
-        <div class="aarti-note">
-
-          <i class="pi pi-info-circle"></i>
-
-          <span>
-            आरती के समय समिति द्वारा आवश्यकता
-            अनुसार अपडेट किया जा सकता है।
-          </span>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     PRASAD CTA
-===================================================== -->
-
-<section class="schedule-prasad">
-
-  <div class="container">
-
-    <div class="prasad-banner">
-
-      <div class="prasad-icon">
-
-        <i class="pi pi-gift"></i>
-
-      </div>
-
-
-      <div class="prasad-content">
+      <div class="venue-content">
 
         <span>
-          PRASAD SEVA
-        </span>
-
-        <h2>
-          माँ का प्रसाद प्राप्त करें
-        </h2>
-
-        <p>
-          पूजा परिसर में प्रसाद प्राप्त करने
-          या उपलब्ध होने पर घर तक मंगाने का
-          विकल्प चुनें।
-        </p>
-
-      </div>
-
-
-      <a
-        routerLink="/prasad"
-        class="prasad-button">
-
-        प्रसाद देखें
-
-        <i class="pi pi-arrow-right"></i>
-
-      </a>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     LIVE DARSHAN
-===================================================== -->
-
-<section class="live-section">
-
-  <div class="container">
-
-    <div class="live-card">
-
-      <div class="live-content">
-
-        <span class="live-pill">
-          <i class="pi pi-video"></i>
-          LIVE DARSHAN
-        </span>
-
-        <h2>
-          जहाँ भी हों,
-          <span>माँ के दर्शन करें</span>
-        </h2>
-
-        <p>
-          निर्धारित पूजा एवं आरती के दौरान
-          website के माध्यम से Live Darshan
-          से जुड़ें।
-        </p>
-
-        <a
-          routerLink="/live-darshan"
-          class="live-button">
-
-          Live Darshan देखें
-
-          <i class="pi pi-arrow-right"></i>
-
-        </a>
-
-      </div>
-
-
-      <div class="live-symbol">
-
-        <div>
-          ॐ
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     VISITOR INFORMATION
-===================================================== -->
-
-<section class="visitor-section">
-
-  <div class="container">
-
-    <div class="section-heading">
-
-      <span class="section-kicker">
-        DEVOTEE INFORMATION
-      </span>
-
-      <h2>
-        श्रद्धालुओं के लिए
-        <span>महत्वपूर्ण जानकारी</span>
-      </h2>
-
-    </div>
-
-
-    <div class="row g-4">
-
-
-      <div class="col-md-6 col-lg-3">
-
-        <div class="visitor-card">
-
-          <i class="pi pi-clock"></i>
-
-          <h3>
-            समय का ध्यान रखें
-          </h3>
-
-          <p>
-            विशेष पूजा और आरती के समय
-            से पहले परिसर में पहुँचने का
-            प्रयास करें।
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="col-md-6 col-lg-3">
-
-        <div class="visitor-card">
-
-          <i class="pi pi-users"></i>
-
-          <h3>
-            भीड़ का ध्यान रखें
-          </h3>
-
-          <p>
-            विशेष दिनों और आरती के समय
-            श्रद्धालुओं की संख्या अधिक हो सकती है।
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="col-md-6 col-lg-3">
-
-        <div class="visitor-card">
-
-          <i class="pi pi-gift"></i>
-
-          <h3>
-            प्रसाद सेवा
-          </h3>
-
-          <p>
-            प्रसाद के लिए उपलब्ध booking
-            और collection options देखें।
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="col-md-6 col-lg-3">
-
-        <div class="visitor-card">
-
-          <i class="pi pi-video"></i>
-
-          <h3>
-            Live Darshan
-          </h3>
-
-          <p>
-            घर से भी निर्धारित कार्यक्रमों
-            के दौरान माँ के दर्शन करें।
-          </p>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     LOCATION
-===================================================== -->
-
-<section class="schedule-location">
-
-  <div class="container">
-
-    <div class="location-wrapper">
-
-      <div>
-
-        <span class="section-kicker">
-          VENUE
+          PUJA VENUE
         </span>
 
         <h2>
@@ -812,8 +290,7 @@
         </h2>
 
         <p>
-          Ranchi Railway Station Durga Puja
-          celebration venue.
+          राँची रेलवे स्टेशन दुर्गा पूजा आयोजन स्थल।
         </p>
 
       </div>
@@ -823,71 +300,15 @@
         href="https://www.google.com/maps/search/?api=1&query=Ranchi+Railway+Station"
         target="_blank"
         rel="noopener noreferrer"
-        class="location-button">
+        class="venue-button">
 
-        <i class="pi pi-map-marker"></i>
+        <i class="pi pi-directions"></i>
 
-        Google Maps पर देखें
+        Google Maps
 
         <i class="pi pi-external-link"></i>
 
       </a>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     FINAL CTA
-===================================================== -->
-
-<section class="schedule-cta">
-
-  <div class="container">
-
-    <div class="cta-content">
-
-      <span>
-        RANCHI RAILWAY STATION DURGA PUJA 2026
-      </span>
-
-      <h2>
-        इस पावन उत्सव का हिस्सा बनिए।
-      </h2>
-
-      <p>
-        पूजा कार्यक्रम देखें, Live Darshan से जुड़ें
-        और माँ का प्रसाद प्राप्त करें।
-      </p>
-
-
-      <div class="cta-buttons">
-
-        <a
-          routerLink="/live-darshan"
-          class="cta-primary">
-
-          <i class="pi pi-video"></i>
-
-          Live Darshan
-
-        </a>
-
-
-        <a
-          routerLink="/prasad"
-          class="cta-secondary">
-
-          <i class="pi pi-gift"></i>
-
-          प्रसाद सेवा
-
-        </a>
-
-      </div>
 
     </div>
 

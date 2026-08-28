@@ -1,0 +1,17 @@
+
+<section class="quick-booking section-pad" *ngIf="config; else loading">
+  <div class="container">
+    <div class="quick-steps"><span [class.active]="step===1">1. Slot</span><i></i><span [class.active]="step===2">2. Review</span><i></i><span [class.active]="step===3">3. Payment</span></div>
+
+    <form *ngIf="step===1" [formGroup]="form" (ngSubmit)="review()" class="row g-4 justify-content-center">
+      <div class="col-lg-7"><div class="quick-form-card"><span class="orange-label">LIMITED VERIFIED SLOTS</span><h2>{{ config.title }}</h2><p>{{ config.description }}</p><div class="slot-meta"><span><i class="pi pi-calendar"></i> {{ config.availableDate }}</span><span><i class="pi pi-users"></i> {{ config.availableSlots }} / {{ config.capacity }} slots available</span></div><label>Choose your time slot</label><select class="form-select" formControlName="timeSlot"><option *ngFor="let slot of config.timeSlots" [value]="slot">{{ slot }}</option></select><hr><h4>Visitor details</h4><div class="row g-3"><div class="col-md-6"><input class="form-control" formControlName="name" placeholder="Full name"></div><div class="col-md-6"><input class="form-control" formControlName="mobile" placeholder="Mobile number"></div><div class="col-12"><input class="form-control" formControlName="email" placeholder="Gmail address"></div></div></div></div>
+      <div class="col-lg-4"><aside class="quick-summary"><span>Entry pass</span><h3>{{ config.title }}</h3><p>{{ form.value.timeSlot }}</p><div><span>Pass amount</span><b>₹{{ config.price }}</b></div><div class="quick-total"><span>Total payable</span><b>₹{{ config.price }}</b></div><button class="quick-cta" type="submit">Review & Pay <i class="pi pi-arrow-right"></i></button></aside></div>
+    </form>
+
+    <section *ngIf="step===2 && booking" class="quick-review"><span class="orange-label">VERIFY YOUR DETAILS</span><h2>Review your शीघ्र दर्शन pass</h2><div class="review-list"><span>Booking type <b>शीघ्र दर्शन विशेष प्रवेश</b></span><span>Slot <b>{{ booking.item.productName }}</b></span><span>Amount <b>₹{{ booking.totalAmount }}</b></span></div><button class="btn btn-light" (click)="step=1">Back</button><button class="quick-cta ms-2" (click)="pay()">Continue to payment</button></section>
+
+    <section *ngIf="step===3 && booking" class="quick-review text-center"><span class="payment-icon"><i class="pi pi-credit-card"></i></span><h2>Payment summary</h2><p>Verified शीघ्र दर्शन pass</p><div class="quick-amount">₹{{ booking.totalAmount }}</div><button class="quick-cta" (click)="pay()" [disabled]="paying">{{ paying ? 'Processing…' : 'Pay Now' }}</button><small>Demo payment only · no real charge will be made.</small></section>
+
+  </div>
+</section>
+<ng-template #loading><div class="loading-box">Loading verified access…</div></ng-template>

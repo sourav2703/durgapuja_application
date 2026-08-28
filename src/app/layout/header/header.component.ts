@@ -1,73 +1,205 @@
 import { Component } from '@angular/core';
+import { Params } from '@angular/router';
+
+interface NavigationItem {
+  label: string;
+  path: string;
+  queryParams?: Params;
+}
 
 @Component({
   selector: 'app-header',
-  template: `
-    <nav class="navbar navbar-expand-lg navbar-dark main-nav sticky-top">
+  styleUrls: ['./header.component.css'],
 
-      <div class="container">
+  template: `
+    <nav class="main-nav">
+
+      <div class="container nav-container">
+
+        <!-- =================================================
+             BRAND
+        ================================================== -->
 
         <a
           routerLink="/"
-          class="navbar-brand d-flex align-items-center gap-2">
+          class="brand"
+          (click)="closeMenus()">
 
-          <span class="brand-mark">ॐ</span>
+          <span class="brand-icon">
+            ॐ
+          </span>
 
-          <span>
-            <strong>Ranchi Railway Station</strong>
-            <small>Durga Puja 2026</small>
+          <span class="brand-text">
+
+            <strong>
+              Ranchi Railway Station
+            </strong>
+
+            <small>
+              Durga Puja 2026
+            </small>
+
           </span>
 
         </a>
 
-        <button
-          class="navbar-toggler"
-          type="button"
-          (click)="open = !open">
 
-          <span class="navbar-toggler-icon"></span>
+        <!-- =================================================
+             MOBILE MENU BUTTON
+        ================================================== -->
+
+        <button
+          type="button"
+          class="mobile-toggle"
+          (click)="open = !open"
+          [attr.aria-expanded]="open">
+
+          <i
+            class="pi"
+            [ngClass]="open ? 'pi-times' : 'pi-bars'">
+          </i>
 
         </button>
 
+
+        <!-- =================================================
+             NAVIGATION
+        ================================================== -->
+
         <div
-          class="collapse navbar-collapse"
-          [class.show]="open">
+          class="nav-menu"
+          [class.open]="open">
 
-          <ul
-            class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
 
-            <li
-              class="nav-item"
-              *ngFor="let item of links">
+          <!-- =================================================
+               NORMAL LINKS
+          ================================================== -->
+
+          <a
+            *ngFor="let item of links"
+            [routerLink]="item.path"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{
+              exact: item.path === '/'
+            }"
+            class="nav-link"
+            (click)="closeMenus()">
+
+            {{ item.label }}
+
+          </a>
+
+
+          <!-- =================================================
+               BOOKING DROPDOWN
+          ================================================== -->
+
+          <div
+            class="booking-menu"
+            [class.open]="bookingOpen">
+
+
+            <!-- BOOKING BUTTON -->
+
+            <button
+              type="button"
+              class="booking-btn"
+              (click)="toggleBooking($event)">
+
+              <i class="pi pi-calendar-plus"></i>
+
+              Booking
+
+              <i
+                class="pi dropdown-arrow"
+                [ngClass]="
+                  bookingOpen
+                    ? 'pi-chevron-up'
+                    : 'pi-chevron-down'
+                ">
+              </i>
+
+            </button>
+
+
+            <!-- =================================================
+                 BOOKING DROPDOWN
+            ================================================== -->
+
+            <div
+              class="booking-dropdown"
+              *ngIf="bookingOpen">
+
+
+              <!-- PRASAD -->
 
               <a
-                class="nav-link"
-                [routerLink]="item.path"
-                routerLinkActive="active"
-                [routerLinkActiveOptions]="{
-                  exact: item.path === '/'
+                routerLink="/access"
+                [queryParams]="{
+                  experience: 'BHOG'
                 }"
-                (click)="open = false">
+                class="booking-option"
+                (click)="closeMenus()">
 
-                {{ item.label }}
+                <span class="option-icon prasad-icon">
+
+                  <i class="pi pi-shopping-bag"></i>
+
+                </span>
+
+                <span class="option-content">
+
+                  <strong>
+                    Prasad Booking
+                  </strong>
+
+                  <small>
+                    प्रसाद एवं भोग बुक करें
+                  </small>
+
+                </span>
+
+                <i class="pi pi-arrow-right option-arrow"></i>
 
               </a>
 
-            </li>
 
-            <li class="nav-item ms-lg-2">
+              <!-- QUICK DARSHAN -->
 
               <a
-                routerLink="/booking"
-                class="btn btn-gold btn-sm px-3">
+                routerLink="/access"
+                [queryParams]="{
+                  experience: 'QUICK_DARSHAN'
+                }"
+                class="booking-option"
+                (click)="closeMenus()">
 
-                प्रसाद बुक करें
+                <span class="option-icon darshan-icon">
+
+                  <i class="pi pi-eye"></i>
+
+                </span>
+
+                <span class="option-content">
+
+                  <strong>
+                    शीघ्र दर्शन Booking
+                  </strong>
+
+                  <small>
+                    Special Entry Pass बुक करें
+                  </small>
+
+                </span>
+
+                <i class="pi pi-arrow-right option-arrow"></i>
 
               </a>
 
-            </li>
 
-          </ul>
+            </div>
+
+          </div>
 
         </div>
 
@@ -80,38 +212,64 @@ export class HeaderComponent {
 
   open = false;
 
-  links = [
+  bookingOpen = false;
+
+
+  links: NavigationItem[] = [
+
     {
       label: 'Home',
       path: '/'
     },
+
     {
       label: 'Puja Schedule',
       path: '/puja-schedule'
     },
+
     {
       label: 'Live Darshan',
       path: '/live-darshan'
     },
-    {
-      label: 'Prasad',
-      path: '/prasad'
-    },
+
     {
       label: 'Gallery',
       path: '/gallery'
     },
+
     {
       label: 'Videos',
       path: '/videos'
     },
+
     {
       label: 'About',
       path: '/about'
     },
+
     {
       label: 'Contact',
       path: '/contact'
     }
+
   ];
+
+
+  toggleBooking(event: Event): void {
+
+    event.stopPropagation();
+
+    this.bookingOpen = !this.bookingOpen;
+
+  }
+
+
+  closeMenus(): void {
+
+    this.open = false;
+
+    this.bookingOpen = false;
+
+  }
+
 }

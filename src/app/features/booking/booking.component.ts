@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
@@ -14,6 +14,7 @@ import { DemoDataService } from '../../core/services/demo-data.service';
   selector: 'app-booking',
   template: `
     <app-page-header
+      *ngIf="!embedded"
       eyebrow="Devotee service"
       title="प्रसाद बुकिंग"
       subtitle="कुछ सरल चरणों में माँ दुर्गा का प्रसाद बुक करें।">
@@ -21,6 +22,17 @@ import { DemoDataService } from '../../core/services/demo-data.service';
 
     <section class="section-pad">
       <div class="container">
+
+        <button
+          *ngIf="embedded && step === 1"
+          type="button"
+          class="btn btn-light mb-3"
+          (click)="backToProducts.emit()">
+
+          <i class="pi pi-arrow-left"></i>
+          Prasad options पर वापस जाएँ
+
+        </button>
 
         <!-- Booking Steps -->
         <div class="booking-steps">
@@ -47,11 +59,13 @@ import { DemoDataService } from '../../core/services/demo-data.service';
               <div class="form-card">
                 <h3>प्रसाद और सेवा चुनें</h3>
 
-                <label>Prasad / Bhog</label>
+                <ng-container *ngIf="!embedded; else chosenProduct">
 
-                <select
-                  class="form-select"
-                  formControlName="productId">
+                  <label>Prasad / Bhog</label>
+
+                  <select
+                    class="form-select"
+                    formControlName="productId">
 
                   <option
                     *ngFor="let p of products"
@@ -60,7 +74,25 @@ import { DemoDataService } from '../../core/services/demo-data.service';
                     {{ p.name }} — ₹{{ p.price }}
 
                   </option>
-                </select>
+                  </select>
+
+                </ng-container>
+
+                <ng-template #chosenProduct>
+
+                  <div
+                    *ngIf="selectedProduct"
+                    class="selected-prasad-lock">
+
+                    <span>Selected Prasad</span>
+
+                    <strong>
+                      {{ selectedProduct.name }} — ₹{{ selectedProduct.price }}
+                    </strong>
+
+                  </div>
+
+                </ng-template>
 
                 <div class="row mt-3 g-3">
 
@@ -346,7 +378,13 @@ import { DemoDataService } from '../../core/services/demo-data.service';
     </section>
   `
 })
-export class BookingComponent implements OnInit {
+export class BookingComponent implements OnInit, OnChanges {
+
+  @Input() embedded = false;
+
+  @Input() productId?: number;
+
+  @Output() backToProducts = new EventEmitter<void>();
 
   step = 1;
 
@@ -441,17 +479,7 @@ export class BookingComponent implements OnInit {
 
         this.products = v;
 
-        const id = Number(
-          this.route.snapshot.queryParamMap.get('product')
-        );
-
-        if (v.some(p => p.id === id)) {
-
-          this.form.patchValue({
-            productId: id
-          });
-
-        }
+        this.applyProductSelection();
 
       });
 
@@ -475,6 +503,28 @@ export class BookingComponent implements OnInit {
       });
 
     this.updateValidation();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+
+    if (changes['productId']) {
+      this.applyProductSelection();
+    }
+
+  }
+
+  private applyProductSelection(): void {
+
+    const routeProductId = Number(
+      this.route.snapshot.queryParamMap.get('product')
+    );
+
+    const id = this.productId || routeProductId;
+
+    if (this.products.some(product => product.id === id)) {
+      this.form.patchValue({ productId: id });
+    }
+
   }
 
   // Selected Product

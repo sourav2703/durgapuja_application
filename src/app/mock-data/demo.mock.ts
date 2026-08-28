@@ -1,4 +1,4 @@
-import { Booking, DashboardSummary, DeliveryZone, GalleryItem, LiveStream, PrasadProduct, PujaEvent, SiteContent, VideoItem } from '../core/models/models';
+import { Booking, DashboardSummary, DeliveryZone, GalleryItem, LiveStream, PrasadProduct, PujaEvent, QuickDarshanConfig, SiteContent, VideoItem } from '../core/models/models';
 
 export const SITE_CONTENT: SiteContent = { heroTitle: 'इस दुर्गा पूजा माँ दुर्गा के साथ जुड़िए', heroText: 'राँची रेलवे स्टेशन दुर्गा पूजा समिति के पावन उत्सव से जुड़िए। पूजा, आरती, Live दर्शन और माँ का प्रसाद अपने परिवार के साथ प्राप्त करें।', committeeMessage: 'श्रद्धा, सेवा और एकता के साथ हम सभी भक्तों का स्वागत करते हैं।', contactPhone: '+91 00000 00000', contactEmail: 'contact@ranchirailwaydurgapuja.org', location: 'Ranchi Railway परिसर, Ranchi, Jharkhand' };
 export const PUJA_EVENTS: PujaEvent[] = [
@@ -14,26 +14,26 @@ export const PUJA_EVENTS: PujaEvent[] = [
 export const PRASAD_PRODUCTS: PrasadProduct[] = [
   {
     id: 1,
-    name: 'महाभोग',
-    description: 'सप्तमी विशेष सात्विक महाभोग, श्रद्धापूर्वक तैयार।',
-    price: 100,
-    imageUrl: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Prosad_thali.jpg',
-    availableDate: '2026-10-20',
-    availability: 63,
-    capacity: 500,
+    name: 'माँ दुर्गा प्रसाद',
+    description: 'पूजा स्थल से प्राप्त पावन प्रसाद। श्रद्धालु इसे अपने परिवार के साथ ग्रहण कर सकते हैं।',
+    price: 101,
+    imageUrl: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=85',
+    availableDate: '17–21 October 2026',
+    availability: 100,
+    capacity: 200,
     collectionMethods: ['ON_PREMISES', 'HOME_DELIVERY'],
     isActive: true
   },
 
   {
     id: 2,
-    name: 'माँ दुर्गा का प्रसाद थाल',
-    description: 'माँ दुर्गा को अर्पित सात्विक भोजन से तैयार विशेष प्रसाद थाल।',
-    price: 100,
-    imageUrl: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/INDIAN_thali.jpg',
-    availableDate: '2026-10-19',
-    availability: 120,
-    capacity: 300,
+    name: 'विशेष भोग प्रसाद',
+    description: 'माँ दुर्गा को अर्पित विशेष भोग का प्रसाद, श्रद्धालुओं के लिए सीमित मात्रा में उपलब्ध।',
+    price: 251,
+    imageUrl: 'https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=900&q=85',
+    availableDate: '19–21 October 2026',
+    availability: 65,
+    capacity: 100,
     collectionMethods: ['ON_PREMISES'],
     isActive: true
   },
@@ -117,6 +117,19 @@ export const PRASAD_PRODUCTS: PrasadProduct[] = [
   }
 ];
 export const DELIVERY_ZONES: DeliveryZone[] = Array.from({ length: 55 }, (_, i) => ({ id: i + 1, ward: `Ward ${i + 1}`, charge: i < 25 ? 40 : 60, isSupported: i < 35 }));
+
+export const QUICK_DARSHAN_CONFIG: QuickDarshanConfig = {
+  title: 'शीघ्र दर्शन विशेष प्रवेश',
+  description: 'सीमित स्लॉट के साथ कम समय में माँ दुर्गा के दर्शन के लिए विशेष प्रवेश सुविधा।',
+  price: 151,
+  availableDate: '2026-10-20',
+  timeSlots: ['08:00 AM – 09:00 AM', '11:00 AM – 12:00 PM', '05:00 PM – 06:00 PM'],
+  capacity: 300,
+  availableSlots: 72,
+  specialEntryName: 'Ranchi Railway Station – Special Puja Entry Gate',
+  specialEntryInstructions: 'Booking confirmation के बाद QR और reference number दिखाकर निर्धारित Special Entry Gate से प्रवेश करें।',
+  googleMapsUrl: 'https://www.google.com/maps/dir/?api=1&destination=Ranchi+Railway+Station'
+};
 export const LIVE_STREAM: LiveStream = {
 
   id: 1,
